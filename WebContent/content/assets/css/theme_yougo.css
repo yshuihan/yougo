@@ -1,0 +1,168 @@
+/* 
+* @Author: anchen
+* @Date:   2015-09-22 15:40:28
+* @Last Modified by:   anchen
+* @Last Modified time: 2015-11-11 17:45:19
+*/
+.theme-bg{
+    background-color: #424242;
+}
+.theme-color{
+    color: #424242;
+}
+.theme-orange-bg{
+    background-color: #f78d3e;
+}
+.theme-orange-border{
+    border: 3px solid #f67f26;
+}
+.grey-bg{
+    background-color: #f5f5f5;
+}
+.theme-cursor{
+    cursor: hand;
+}
+.text-grey{
+    color: #424242;
+}
+.logo-size{
+    width: 100px;
+    height: 100px;
+}
+.nav-hover:hover{
+    /* background-color: #80D06D; */
+    color: #fff;
+    border-bottom: 3px solid #f78d3e;
+}
+.height-size{
+    max-height: 200px;
+}
+.logo-size{
+	max-width: 50px;
+	max-height: 50px;
+}
+.image-height-size{
+    height: 200px;
+}
+.img-size{
+    width: 100%;
+    height: 304px;
+}
+.nav-line-height{
+    line-height: 50px;
+}
+.nav-min-height{
+    height: 150px;
+}
+.list-width{
+    width: 80px;
+    height: 150px;
+}
+.list-first{
+    width: 351.79px;
+    height: 150px;
+}
+.lsit-size{
+    width: 911.797px;
+    height: 150px;
+}
+.pro-size{
+    width: 100%;
+    height: 260px;
+}
+.recom-size{
+    width: 100%;
+    height: 210px;
+}
+.img-limit-size{
+    width: 180px;
+    height: 180px;
+}
+.box-shadow{
+          box-shadow: 3px 3px 5px #888888;
+     -moz-box-shadow: 3px 3px 5px #888888;
+  -webkit-box-shadow: 3px 3px 5px #888888;
+}
+.overflow-hidden{
+    overflow: hidden;
+}
+.z-index02{
+    z-index: 2;
+}
+.z-index03{
+    z-index: 3;
+}
+.z-index04{
+    z-index: 4;
+}
+.z-index05{
+    z-index: 5;
+}
+.z-index06{
+    z-index: 6;
+}
+.z-index07{
+    z-index: 7;
+}
+.z-index08{
+    z-index: 8;
+}
+.z-index09{
+    z-index: 9;
+}
+.z-index10{
+    z-index: 10;
+}
+.z-index11{
+    z-index: 11;
+}
+.input-num{
+    width: 40%;
+    height: 44px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.btn-num{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.title-name-ab{
+    left: 43%;
+    bottom: -5%;
+}
+.list-bottom{
+    border-bottom: 1px solid #fff;
+}
+.ul-borer{
+    border: 2px solid #807B7B;
+}
+.tb-pro-size{
+    width: 50px;
+    height: 50px;
+}
+.log-reg-top{
+    left: 10%;
+    top: 20%;
+}
+.height-limit{
+    height: 120px;
+}
+.div-circle{
+    border-radius: 65%;
+    -moz-border-radius: 65%; 
+  -webkit-border-radius: 65%;
+}
+.ch-abso{
+    left: 22%;
+    bottom: 7%;
+}
+.en-abso{
+    left: 15%;
+    top: 28%;
+}
+.login-height{
+    height: 730px;
+}
+.login-box-height{
+    height: 220px;
+}

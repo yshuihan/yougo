@@ -1,0 +1,46 @@
+/* 
+* @Author: anchen
+* @Date:   2015-09-20 11:53:16
+* @Last Modified by:   anchen
+* @Last Modified time: 2015-10-05 12:28:41
+*/
+.listview{
+    border: 1px solid #424242;
+}
+.li-style{
+    border-width: 1px;
+    border-style: solid;
+}
+.img-limit-size{
+	width:55%;
+	height:25%;
+}
+.listview>.li-style{
+    border-color: #424242;
+    background-color: #424242;
+    color: #fff;
+}
+.listview>.li-stle-bottom{
+    border-bottom-color: #fff;
+}
+.listselect>.li-stle-bottom{
+    border-bottom: 1px solid #424242;
+    background-color: #fff;
+    color: #777;
+}
+.tp-index{
+    z-index: 3;
+}
+.ab-left-10{
+    left: -10px;
+}
+.upload-head-size{
+    width: 50px;
+    height: 50px;
+}
+.upload-head-mydark{
+    background-color: #424242;
+}
+.login-height{
+    height: 200px;
+}

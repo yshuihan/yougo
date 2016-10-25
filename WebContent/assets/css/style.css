@@ -1,0 +1,90 @@
+/* 
+* @Author: anchen
+* @Date:   2015-09-19 15:28:23
+* @Last Modified by:   anchen
+* @Last Modified time: 2015-10-31 13:01:14
+*/
+*{
+    font: Open Sans, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.text-white{
+    color: #fff;
+}
+.text-red{
+	color: #ff0000;
+}
+.bg-white{
+    background-color: #fff;
+}
+.bg-blue{
+    background-color: blue;
+}
+.bg-grey{
+    background-color: #F7F7F7;
+}
+.text-ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.no-lsitview{
+    list-style-type: none;
+}
+.no-display{
+    display: none;
+}
+.border-mydark{
+    border: 1px solid #807B7B;
+}
+.border-green{
+    border: 1px solid #449d44;
+}
+.border-mydark-blod{
+    border: 3px solid #807B7B;
+}
+.border-green-blod{
+    border: 3px solid #449d44;
+}
+.border-bottom-mydark{
+    border-bottom: 4px solid #807B7B;;
+}
+.border-top-mydark{
+    border-top: 4px solid #807B7B;;
+}
+.border-mydark-wide{
+    border: 4px solid #807B7B;;
+}
+.bg-mydark{
+    background-color: #424242;
+}
+.color-mydark{
+    color: #424242;
+}
+.text-orange{
+    color: #F40;
+}
+.animation-show {
+    opacity: 0.4;
+    /* transform:scale(0.5);
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    -o-transform:scale(0.5); */
+}
+.onshow>.animation-show{
+    opacity: 1;
+    /* transform:scale(1);
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1);
+    -o-transform:scale(1); */
+    transition:  all 0.6s ease-in-out 0.2s;
+    -webkit-transition:  all 0.6s ease-in-out 0.2s;
+    -o-transition:  all 0.6s ease-in-out 0.2s;
+    -ms-transition:  all 0.6s ease-in-out 0.2s;
+    -moz-transition:  all 0.6s ease-in-out 0.2s;
+}

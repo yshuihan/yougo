@@ -1,0 +1,94 @@
+body .btn-mydark,.btn-mydark:hover {
+    border-color: #424242;
+    background-color: #424242;
+    border-color: #424242 #797575 #424242;
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.btn-mydark:focus{
+    border-color: #424242;
+    background-color: #222;
+    border-color: #424242 #797575 #424242;
+    color: white;
+    text-shadow: 0 1px 1px rgba(44, 44, 44, 0.25);
+}
+.dropdown-btn-radius{
+	border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.input-mydark:focus{
+    border-color: #424242;
+    -webkit-box-shadow: inset 0 1px 1px rgba(66,66,66,.075);
+    box-shadow: inset 0 1px 1px rgba(66,66,66,.075);
+}/* 
+* @Author: anchen
+* @Date:   2015-09-19 23:16:59
+* @Last Modified by:   anchen
+* @Last Modified time: 2015-10-05 14:50:12
+*/
+body{
+        line-height: 25px;
+}
+.panel-mydark {
+    border-color: #424242;
+}
+.panel-mydark>.panel-heading {
+    color: #fff;
+    background-color: #424242;
+    border-color: #424242;
+}
+.panel-title {
+    color: #fff;
+    font-size: 20px;
+    line-height: 20px;
+    padding: 0;
+    text-transform: none;
+}
+.table-auto{
+	width: 100%;
+	overflow-x: auto;
+}
+.tb-head-size{
+    width: 40px;
+    height: 40px;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 40px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+.pagination> li a {
+    color: #424242;
+    background-color: #fff;
+}
+.pagination > li.active a {
+    background-color: #424242;
+    color: #fff;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #424242;
+    border-color: #424242;
+}
+body .btn-mydark,.btn-mydark:hover {
+    border-color: #424242;
+    background-color: #424242;
+    border-color: #424242 #797575 #424242;
+    color: white;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.btn-mydark:focus{
+    border-color: #424242;
+    background-color: #222;
+    border-color: #424242 #797575 #424242;
+    color: white;
+    text-shadow: 0 1px 1px rgba(44, 44, 44, 0.25);
+}
+.input-mydark:focus{
+    border-color: #807B7B;
+    -webkit-box-shadow: inset 0 1px 1px rgba(128,123,123,.075);
+    box-shadow: inset 0 1px 1px rgba(123,123,123,.075);
+}
