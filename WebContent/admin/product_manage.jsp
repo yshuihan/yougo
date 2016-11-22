@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Product"%>
-<%@page import="com.jdbc.Protype"%>
-<%@page import="com.jdbc.Style"%>
-<%@page import="com.jdbc.Proimages"%>
+<%@page import="com.yougo.bean.Product"%>
+<%@page import="com.yougo.bean.Protype"%>
+<%@page import="com.yougo.bean.Style"%>
+<%@page import="com.yougo.bean.Proimages"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -27,10 +27,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="protypeDaoImpl" class="com.jdbc.ProtypeDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="productDaoImpl" class="com.jdbc.ProductDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="styleDaoImpl" class="com.jdbc.StyleDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="proimagesDaoImpl" class="com.jdbc.ProimagesDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
   <%
     	String lpt="";
     	String pttpOption="";

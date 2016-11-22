@@ -1,11 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Shopcart"%>
-<%@page import="com.jdbc.Product"%>
-<%@page import="com.jdbc.Adress"%>
-<%@page import="com.jdbc.Style"%>
-<%@page import="com.jdbc.Protype"%>
+<%@page import="com.yougo.bean.Shopcart"%>
+<%@page import="com.yougo.bean.Product"%>
+<%@page import="com.yougo.bean.Address"%>
+<%@page import="com.yougo.bean.Style"%>
+<%@page import="com.yougo.bean.Protype"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -50,26 +50,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <div id="logReg" class="col-lg-2 col-md-2 col-sm-3 col-xs-3 mt-md mb-sm">
 	                        <ul class="no-lsitview">
 	                        <%
-	                        String loginid="",loginname="";
-	                        if(session.getAttribute("loginid")==null || session.getAttribute("loginname")==null ||session.getAttribute("loginid")=="" || session.getAttribute("loginname")=="")
-	                       	{
-	                        	response.sendRedirect("log_reg.jsp?type=login");
-	                        }
-	                        if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
-	                        	loginid=session.getAttribute("loginid").toString();
-	                        	loginname=session.getAttribute("loginname").toString();
-	                        }
-	                        if(!loginid.equals("") && !loginname.equals("")){
-	                         %>
+	                        	String loginid="",loginname="";
+	                        	                        	                        if(session.getAttribute("loginid")==null || session.getAttribute("loginname")==null ||session.getAttribute("loginid")=="" || session.getAttribute("loginname")=="")
+	                        	                        	                       	{
+	                        	                        	                        	response.sendRedirect("log_reg.jsp?type=login");
+	                        	                        	                        }
+	                        	                        	                        if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
+	                        	                        	                        	loginid=session.getAttribute("loginid").toString();
+	                        	                        	                        	loginname=session.getAttribute("loginname").toString();
+	                        	                        	                        }
+	                        	                        	                        if(!loginid.equals("") && !loginname.equals("")){
+	                        %>
 	                         	<li class="float-left dropdown">
-	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle" data-toggle="dropdown" href="javascript:;"><%=loginname %><b class="caret"></b></a>
+	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle" data-toggle="dropdown" href="javascript:;"><%=loginname%><b class="caret"></b></a>
 	                            	<ul class="dropdown-menu">
 						               <li><a href="content/us.jsp">个人设置</a></li>
 						               <li class="divider"></li>
 						               <li><a href="content/login_out.jsp">退出</a></li>
 						            </ul>
 	                            </li>
-	                         <%}else{ 
+	                         <%
+	                         	}else{
 	                         %>
 	                            <li class="float-left">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover" href="content/log_reg.jsp?type=login">登录</a>
@@ -77,7 +78,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <li class="float-left">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover" href="content/log_reg.jsp?type=register">注册</a>
 	                            </li>
-                            <%} %>
+                            <%
+                            	}
+                            %>
 	                        </ul>
 	                    </div>
 	                    <div id="shopList" class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0 mt-md mb-sm pull-right">
@@ -99,11 +102,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	            </div>
-	            <jsp:useBean id="productDaoImpl" class="com.jdbc.ProductDaoImpl" scope="request"></jsp:useBean>
-    			<jsp:useBean id="shopcartDaoImpl" class="com.jdbc.ShopcartDaoImpl" scope="request"></jsp:useBean>
-  				<jsp:useBean id="adressDaoImpl" class="com.jdbc.AdressDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="styleDaoImpl" class="com.jdbc.StyleDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="protypeDaoImpl" class="com.jdbc.ProtypeDaoImpl" scope="request"></jsp:useBean>
+	            <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+    			<jsp:useBean id="shopcartDaoImpl" class="com.yougo.impl.ShopcartDaoImpl" scope="request"></jsp:useBean>
+  				<jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
   				<div id="mainContent" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 p-none pt-xlg mt-lg">
                     <div id="subNavigation" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center text-white border-bottom-mydark mb-md">
                         <a class="no-underline text-white" href="content/classify.jsp?page=1"><h2 class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark m-none pt-xlg pb-xs">APPLE</h2></a>
@@ -117,19 +120,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h3><span class="glyphicon glyphicon-shopping-cart mr-sm"></span>我的购物车</h3> 
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <%
-	                        String addrstr="select * from adress where userid=" + loginid+ " order by id ";
-	                        Collection<Adress> ccaddr=adressDaoImpl.getAdresss(addrstr);
-							Iterator<Adress> addriter=ccaddr.iterator();
-							String spctstr="select * from shopcart where userid=" + loginid+ " order by id ";
-							Collection<Shopcart> ccspct=shopcartDaoImpl.getShopcart(spctstr);
-							Iterator<Shopcart> spctiter=ccspct.iterator();
-	                        %>
+                            	String addrstr="select * from adress where userid=" + loginid+ " order by id ";
+                            	                        Collection<Address> ccaddr=adressDaoImpl.getAdresss(addrstr);
+                            					Iterator<Address> addriter=ccaddr.iterator();
+                            					String spctstr="select * from shopcart where userid=" + loginid+ " order by id ";
+                            					Collection<Shopcart> ccspct=shopcartDaoImpl.getShopcart(spctstr);
+                            					Iterator<Shopcart> spctiter=ccspct.iterator();
+                            %>
                             <div id="userAddress" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-md mb-lg">
                                 <h4>选择物流地址：</h4>
                                 <%
-	                       		while(addriter.hasNext()){ 
-	  								Adress addr=(Adress)addriter.next();
-	                            %>
+                                	while(addriter.hasNext()){ 
+                                	  								Address addr=(Address)addriter.next();
+                                %>
                                 <a class="no-underline theme-color add-href" addrvalue="<%=addr.getId() %>" href="javascript:;">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5 mr-md mt-md theme-orange-border address-list">
                                     <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10 p-none">

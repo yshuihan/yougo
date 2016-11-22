@@ -1,14 +1,14 @@
 <%@ page language="java" import="java.util.*,java.lang.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Product"%>
-<%@page import="com.jdbc.Style"%>
-<%@page import="com.jdbc.Protype"%>
-<%@page import="com.jdbc.Proimages"%>
-<%@page import="com.jdbc.Evaluation"%>
-<%@page import="com.jdbc.User"%>
-<%@page import="com.jdbc.Order"%>
-<%@page import="com.jdbc.Orderdetail"%>
+<%@page import="com.yougo.bean.Product"%>
+<%@page import="com.yougo.bean.Style"%>
+<%@page import="com.yougo.bean.Protype"%>
+<%@page import="com.yougo.bean.Proimages"%>
+<%@page import="com.yougo.bean.Evaluation"%>
+<%@page import="com.yougo.bean.User"%>
+<%@page import="com.yougo.bean.Order"%>
+<%@page import="com.yougo.bean.Orderdetail"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -57,33 +57,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <div id="logReg" class="col-lg-2 col-md-2 col-sm-3 col-xs-3 mt-md mb-sm">
 	                        <ul class="no-lsitview">
 	                        <%
-	                        /* String loginid = session.getAttribute("loginid").toString();
-	                    	String loginname = session.getAttribute("loginname").toString(); */
-	                        String loginid="",loginname="";
-	                        if(session.getAttribute("loginid")!=null){
-	                        	loginid=session.getAttribute("loginid").toString();
-	                        }
-	                        if(session.getAttribute("loginname")!=null){
-	                        	loginname=session.getAttribute("loginname").toString();
-	                        }
-	                        if(!loginid.equals("") && !loginname.equals("")){
-	                         %>
+	                        	/* String loginid = session.getAttribute("loginid").toString();
+	                        	                    	String loginname = session.getAttribute("loginname").toString(); */
+	                        	                        String loginid="",loginname="";
+	                        	                        if(session.getAttribute("loginid")!=null){
+	                        	                        	loginid=session.getAttribute("loginid").toString();
+	                        	                        }
+	                        	                        if(session.getAttribute("loginname")!=null){
+	                        	                        	loginname=session.getAttribute("loginname").toString();
+	                        	                        }
+	                        	                        if(!loginid.equals("") && !loginname.equals("")){
+	                        %>
 	                         	<li class="float-left dropdown">
-	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle" data-toggle="dropdown" href="javascript:;"><%=loginname %><b class="caret"></b></a>
+	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle" data-toggle="dropdown" href="javascript:;"><%=loginname%><b class="caret"></b></a>
 	                            	<ul class="dropdown-menu">
 						               <li><a href="content/us.jsp">个人设置</a></li>
 						               <li class="divider"></li>
 						               <li><a href="content/login_out.jsp">退出</a></li>
 						            </ul>
 	                            </li>
-	                         <%}else{ %>
+	                         <%
+	                         	}else{
+	                         %>
 	                            <li class="float-left">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover" href="content/log_reg.jsp?type=login">登录</a>
 	                            </li>
 	                            <li class="float-left">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover" href="content/log_reg.jsp?type=register">注册</a>
 	                            </li>
-                            <%} %>
+                            <%
+                            	}
+                            %>
 	                        </ul>
 	                    </div>
 	                    <div id="shopList" class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0 mt-md mb-sm pull-right">
@@ -105,14 +109,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	            </div>
-                <jsp:useBean id="productDaoImpl" class="com.jdbc.ProductDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="styleDaoImpl" class="com.jdbc.StyleDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="proimagesDaoImpl" class="com.jdbc.ProimagesDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="protypeDaoImpl" class="com.jdbc.ProtypeDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="evaluationDaoImpl" class="com.jdbc.EvaluationDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="userDaoImpl" class="com.jdbc.UserDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="orderDaoImpl" class="com.jdbc.OrderDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="orderdetailImpl" class="com.jdbc.OrderdetailImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="evaluationDaoImpl" class="com.yougo.impl.EvaluationDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="orderdetailImpl" class="com.yougo.impl.OrderdetailImpl" scope="request"></jsp:useBean>
 			    <%
 			    	String prid=request.getParameter("pid");
 			    	String proname="",styleid="";

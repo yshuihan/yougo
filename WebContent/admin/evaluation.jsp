@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Product"%>
-<%@page import="com.jdbc.Evaluation"%>
-<%@page import="com.jdbc.User"%>
+<%@page import="com.yougo.bean.Product"%>
+<%@page import="com.yougo.bean.Evaluation"%>
+<%@page import="com.yougo.bean.User"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -26,9 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="productDaoImpl" class="com.jdbc.ProductDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="evaluationDaoImpl" class="com.jdbc.EvaluationDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="userDaoImpl" class="com.jdbc.UserDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="evaluationDaoImpl" class="com.yougo.impl.EvaluationDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
     <div class="manage_list col-lg-10 col-lg-offset-1">
 	    <div class="table-responsive">
 	        <table class="table table-hover">

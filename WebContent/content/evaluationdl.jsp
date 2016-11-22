@@ -1,8 +1,8 @@
 <%@ page language="java" import="java.util.*,java.text.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Evaluation"%>
-<%@page import="com.jdbc.Order"%>
+<%@page import="com.yougo.bean.Evaluation"%>
+<%@page import="com.yougo.bean.Order"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -25,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="evaluationDaoImpl" class="com.jdbc.EvaluationDaoImpl" scope="request"></jsp:useBean>
-    <jsp:useBean id="orderDaoImpl" class="com.jdbc.OrderDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="evaluationDaoImpl" class="com.yougo.impl.EvaluationDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
     <%
    	String loginid="",loginname="";
     if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){

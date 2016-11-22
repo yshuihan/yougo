@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Manager"%>
+<%@page import="com.yougo.bean.Manager"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<jsp:useBean id="managerDaoImpl" class="com.jdbc.ManagerDaoImpl" scope="request"></jsp:useBean>
+  	<jsp:useBean id="managerDaoImpl" class="com.yougo.impl.ManagerDaoImpl" scope="request"></jsp:useBean>
     <%
    	String email=request.getParameter("email");
     String password=request.getParameter("password");

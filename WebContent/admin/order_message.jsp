@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Order"%>
-<%@page import="com.jdbc.Orderdetail"%>
-<%@page import="com.jdbc.Product"%>
+<%@page import="com.yougo.bean.Order"%>
+<%@page import="com.yougo.bean.Orderdetail"%>
+<%@page import="com.yougo.bean.Product"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -26,9 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="productDaoImpl" class="com.jdbc.ProductDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="orderDaoImpl" class="com.jdbc.OrderDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="orderdetailImpl" class="com.jdbc.OrderdetailImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="orderdetailImpl" class="com.yougo.impl.OrderdetailImpl" scope="request"></jsp:useBean>
     <div class="manage_list col-lg-10 col-lg-offset-1">
     <%
     int pagecount = 5;

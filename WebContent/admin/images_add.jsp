@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Proimages"%>
+<%@page import="com.yougo.bean.Proimages"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="proimagesDaoImpl" class="com.jdbc.ProimagesDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
 	  <%
 	    String alt="",pid="",filept="",message="",result="f";
 	    if(session.getAttribute("message")!=null){

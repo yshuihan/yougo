@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.jdbc.Product"%>
-<%@page import="com.jdbc.Adress"%>
-<%@page import="com.jdbc.Style"%>
-<%@page import="com.jdbc.Protype"%>
+<%@page import="com.yougo.bean.Product"%>
+<%@page import="com.yougo.bean.Address"%>
+<%@page import="com.yougo.bean.Style"%>
+<%@page import="com.yougo.bean.Protype"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -34,15 +34,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <%
-  String loginid="",loginname="";
-  if(session.getAttribute("loginid")==null || session.getAttribute("loginname")==null ||session.getAttribute("loginid")=="" || session.getAttribute("loginname")=="")
- 	{
-  	response.sendRedirect("log_reg.jsp?type=login");
-  }
-  if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
-  	loginid=session.getAttribute("loginid").toString();
-  	loginname=session.getAttribute("loginname").toString();
-  }
+  	String loginid="",loginname="";
+      if(session.getAttribute("loginid")==null || session.getAttribute("loginname")==null ||session.getAttribute("loginid")=="" || session.getAttribute("loginname")=="")
+     	{
+      	response.sendRedirect("log_reg.jsp?type=login");
+      }
+      if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
+      	loginid=session.getAttribute("loginid").toString();
+      	loginname=session.getAttribute("loginname").toString();
+      }
   %>
     <div id="main" class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -56,18 +56,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <div id="logReg" class="col-lg-2 col-md-2 col-sm-3 col-xs-3 mt-md mb-sm">
 	                        <ul class="no-lsitview">
 	                        <%
-	                        
-	                        if(!loginid.equals("") && !loginname.equals("")){
-	                         %>
+	                        	if(!loginid.equals("") && !loginname.equals("")){
+	                        %>
 	                         	<li class="float-left dropdown">
-	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle" data-toggle="dropdown" href="javascript:;"><%=loginname %><b class="caret"></b></a>
+	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle" data-toggle="dropdown" href="javascript:;"><%=loginname%><b class="caret"></b></a>
 	                            	<ul class="dropdown-menu">
 						               <li><a href="content/us.jsp">个人设置</a></li>
 						               <li class="divider"></li>
 						               <li><a href="content/login_out.jsp">退出</a></li>
 						            </ul>
 	                            </li>
-	                         <%}else{ 
+	                         <%
+	                         	}else{
 	                         %>
 	                            <li class="float-left">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover" href="content/log_reg.jsp?type=login">登录</a>
@@ -75,7 +75,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <li class="float-left">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover" href="content/log_reg.jsp?type=register">注册</a>
 	                            </li>
-                            <%} %>
+                            <%
+                            	}
+                            %>
 	                        </ul>
 	                    </div>
 	                    <div id="shopList" class="col-lg-3 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-4 col-xs-offset-0 mt-md mb-sm pull-right">
@@ -97,39 +99,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	            </div>
-	            <jsp:useBean id="productDaoImpl" class="com.jdbc.ProductDaoImpl" scope="request"></jsp:useBean>
-	            <jsp:useBean id="adressDaoImpl" class="com.jdbc.AdressDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="styleDaoImpl" class="com.jdbc.StyleDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="protypeDaoImpl" class="com.jdbc.ProtypeDaoImpl" scope="request"></jsp:useBean>
+	            <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+	            <jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
                 <%
-                String prid=request.getParameter("pid");
-                String styleid=request.getParameter("styleid");
-                String pronum=request.getParameter("pronum");
-                String addshop=request.getParameter("addshop");
-                if(loginid.equals("") || loginname.equals("")){
-                	//response.sendRedirect("log_reg.jsp?type=login");
-                }else{
-	                if(addshop!=null){
-	                	response.sendRedirect("addshop.jsp?proid="+prid+"&styleid="+styleid+"&pronum="+pronum);
-	                }
-			    	String proname="",typename="",typeid="",stylename="",odrCOde="";
-			    	if(prid==null){
-			    		String olUrl=request.getHeader("Referer");
-	   					response.sendRedirect(olUrl);
-			    	}else{
-				    	short pid=Short.parseShort(prid);
-				    	Product pd=productDaoImpl.findProduct(pid);
-						proname=pd.getName();
-						typeid=pd.getTypeid().toString();
-						Protype pty=protypeDaoImpl.findProtype(pd.getTypeid());
-						typename=pty.getType();
-						Style sty=styleDaoImpl.findStyle(Short.parseShort(styleid));
-						stylename=sty.getName();
-						Date dt =new Date();
-						String dtstr= Long.toString(dt.getTime());
-						Random random = new Random();
-	                    int num=random.nextInt(10);
-						odrCOde="A"+dtstr.substring(dtstr.length()-6,dtstr.length()-1)+num;
+                	String prid=request.getParameter("pid");
+                                String styleid=request.getParameter("styleid");
+                                String pronum=request.getParameter("pronum");
+                                String addshop=request.getParameter("addshop");
+                                if(loginid.equals("") || loginname.equals("")){
+                                	//response.sendRedirect("log_reg.jsp?type=login");
+                                }else{
+                	                if(addshop!=null){
+                	                	response.sendRedirect("addshop.jsp?proid="+prid+"&styleid="+styleid+"&pronum="+pronum);
+                	                }
+                	    	String proname="",typename="",typeid="",stylename="",odrCOde="";
+                	    	if(prid==null){
+                	    		String olUrl=request.getHeader("Referer");
+                	   					response.sendRedirect(olUrl);
+                	    	}else{
+                		    	short pid=Short.parseShort(prid);
+                		    	Product pd=productDaoImpl.findProduct(pid);
+                				proname=pd.getName();
+                				typeid=pd.getTypeid().toString();
+                				Protype pty=protypeDaoImpl.findProtype(pd.getTypeid());
+                				typename=pty.getType();
+                				Style sty=styleDaoImpl.findStyle(Short.parseShort(styleid));
+                				stylename=sty.getName();
+                				Date dt =new Date();
+                				String dtstr= Long.toString(dt.getTime());
+                				Random random = new Random();
+                	                    int num=random.nextInt(10);
+                				odrCOde="A"+dtstr.substring(dtstr.length()-6,dtstr.length()-1)+num;
                 %>
                 <div id="mainContent" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 p-none pt-xlg mt-lg">
                     <div id="subNavigation" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center text-white border-bottom-mydark mb-md">
@@ -144,26 +146,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h4>
                             <a class="no-underline text-muted" href="content/classify.jsp">APPLE</a>
                             <span class="pl-xs pr-xs">></span>
-                            <a class="no-underline text-muted" href="content/classify.jsp?typeid=<%=typeid%>"><%=typename %></a>
+                            <a class="no-underline text-muted" href="content/classify.jsp?typeid=<%=typeid%>"><%=typename%></a>
                         </h4>
                     </div>
                     <div id="orderCreate" class="col-lg-offset-0 col-lg-12 col-md-offset-0 col-md-12 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 mt-lg pb-lg mb-lg relative">
                         <div id="proImage" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-md mb-lg">
-                            <a class="no-underline text-dark" href="content/detail.jsp?proid=<%=pid %>">
-                                <div class="col-lg-3 bgimg-cover image-height-size box-shadow" style="background-image: url(<%=pd.getIndeximage() %>)"></div>
+                            <a class="no-underline text-dark" href="content/detail.jsp?proid=<%=pid%>">
+                                <div class="col-lg-3 bgimg-cover image-height-size box-shadow" style="background-image: url(<%=pd.getIndeximage()%>)"></div>
                             </a>
-                            <h4 class="col-lg-4 absolute title-name-ab"><a class="no-underline text-dark" href="content/detail.jsp?proid=<%=pd.getId() %>"><%=pd.getName() %></a></h4>
+                            <h4 class="col-lg-4 absolute title-name-ab"><a class="no-underline text-dark" href="content/detail.jsp?proid=<%=pd.getId()%>"><%=pd.getName()%></a></h4>
                         </div>
                         <%
-                        String str="select * from adress where userid=" + loginid+ " order by id ";
-                        Collection<Adress> ccaddr=adressDaoImpl.getAdresss(str);
-						Iterator<Adress> addriter=ccaddr.iterator();
+                        	String str="select * from adress where userid=" + loginid+ " order by id ";
+                                                Collection<Address> ccaddr=adressDaoImpl.getAdresss(str);
+                        				Iterator<Address> addriter=ccaddr.iterator();
                         %>
                         <div id="userAddress" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-md mb-lg">
                             <h4>选择物流地址：</h4>
                             <%
-                       		while(addriter.hasNext()){ 
-  								Adress addr=(Adress)addriter.next();
+                            	while(addriter.hasNext()){ 
+                              								Address addr=(Address)addriter.next();
                             %>
                             <a class="no-underline theme-color add-href" addrvalue="<%=addr.getId() %>" href="javascript:;">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5 mr-md mt-md theme-orange-border address-list">

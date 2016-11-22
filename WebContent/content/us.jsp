@@ -1,10 +1,10 @@
-<%@page import="com.jdbc.UserDaoImpl"%>
+<%@page import="com.yougo.impl.UserDaoImpl"%>
 <%@ page language="java" import="java.util.*,java.text.*"
 	pageEncoding="utf-8"%>
-<%@page import="com.jdbc.User"%>
-<%@page import="com.jdbc.Adress"%>
+<%@page import="com.yougo.bean.User"%>
+<%@page import="com.yougo.bean.Address"%>
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
@@ -39,21 +39,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-	<jsp:useBean id="userDaoImpl" class="com.jdbc.UserDaoImpl"
+	<jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl"
 		scope="request"></jsp:useBean>
-	<jsp:useBean id="adressDaoImpl" class="com.jdbc.AdressDaoImpl"
+	<jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl"
 		scope="request"></jsp:useBean>
 	<%
-	String loginid="",loginname="",headimage="",oldPd="";
-    if(session.getAttribute("loginid")==null || session.getAttribute("loginname")==null ||session.getAttribute("loginid")=="" || session.getAttribute("loginname")=="")
-   	{
-    	response.sendRedirect("log_reg.jsp?type=login");
-    }
-    if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
-    	loginid=session.getAttribute("loginid").toString();
-    	loginname=session.getAttribute("loginname").toString();
-    }
-    if(!loginid.equals("") && !loginname.equals("")){
+		String loginid="",loginname="",headimage="",oldPd="";
+	    if(session.getAttribute("loginid")==null || session.getAttribute("loginname")==null ||session.getAttribute("loginid")=="" || session.getAttribute("loginname")=="")
+	   	{
+	    	response.sendRedirect("log_reg.jsp?type=login");
+	    }
+	    if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
+	    	loginid=session.getAttribute("loginid").toString();
+	    	loginname=session.getAttribute("loginname").toString();
+	    }
+	    if(!loginid.equals("") && !loginname.equals("")){
 	%>
 	<div id="main" class="row">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul class="no-lsitview">
 							<li class="float-left dropdown"><a
 								class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle"
-								data-toggle="dropdown" href="javascript:;"><%=loginname %><b
+								data-toggle="dropdown" href="javascript:;"><%=loginname%><b
 									class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="content/us.jsp">个人设置</a></li>
@@ -149,31 +149,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="usContent"
 						class="col-lg-10 col-md-10 col-sm-9 col-xs-8 height-min-limited">
 						<%
-                            short usrid=1;
-                            if(!loginid.equals("")){
-                            	usrid= Short.parseShort(loginid);
-                            }
-                            User usr=userDaoImpl.findUser(usrid);
-                            String usrname = usr.getName();
-                            String usremail = usr.getEmail();
-                            String usrphone = usr.getPhone();
-                            String usrqq = usr.getQq();
-                            String usrbirth = usr.getBirthday();
-                            if(usrbirth==null||usrbirth.equals("")){
-                            	usrbirth="2007-12-06";
-                            }
-                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd") ; 
-					        Date dt = null ;    
-					        try{    
-					            dt = sdf.parse(usrbirth) ;       
-					        }catch(Exception e){         
-					            e.printStackTrace() ;    
-					        }
-					        usrbirth = sdf.format(dt);
-                            String usradress = usr.getAdress();
-                            headimage=usr.getHeadimage();
-                            oldPd=usr.getPassword();
-                             %>
+							short usrid=1;
+						                            if(!loginid.equals("")){
+						                            	usrid= Short.parseShort(loginid);
+						                            }
+						                            User usr=userDaoImpl.findUser(usrid);
+						                            String usrname = usr.getName();
+						                            String usremail = usr.getEmail();
+						                            String usrphone = usr.getPhone();
+						                            String usrqq = usr.getQq();
+						                            String usrbirth = usr.getBirthday();
+						                            if(usrbirth==null||usrbirth.equals("")){
+						                            	usrbirth="2007-12-06";
+						                            }
+						                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd") ; 
+									        Date dt = null ;    
+									        try{    
+									            dt = sdf.parse(usrbirth) ;       
+									        }catch(Exception e){         
+									            e.printStackTrace() ;    
+									        }
+									        usrbirth = sdf.format(dt);
+						                            String usradress = usr.getAdress();
+						                            headimage=usr.getHeadimage();
+						                            oldPd=usr.getPassword();
+						%>
 						<div id="uslist"
 							class="col-lg-12 col-md-12 col-sm-12 col-xs-12 uslist pt-xlg">
 							<div
@@ -181,37 +181,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group mt-md pt-lg">
 									<label for="username" class="col-sm-3 control-label">用户名</label>
 									<div class="col-sm-9">
-										<p class="text-center"><%=usrname %></p>
+										<p class="text-center"><%=usrname%></p>
 									</div>
 								</div>
 								<div class="form-group mt-md pt-lg">
 									<label for="email" class="col-sm-3 control-label">邮箱</label>
 									<div class="col-sm-9">
-										<p class="text-center"><%=usremail %></p>
+										<p class="text-center"><%=usremail%></p>
 									</div>
 								</div>
 								<div class="form-group mt-md pt-lg">
 									<label for="phone" class="col-sm-3 control-label">手机</label>
 									<div class="col-sm-9">
-										<p class="text-center"><%=usrphone %></p>
+										<p class="text-center"><%=usrphone%></p>
 									</div>
 								</div>
 								<div class="form-group mt-md pt-lg">
 									<label for="QQ" class="col-sm-3 control-label">QQ</label>
 									<div class="col-sm-9">
-										<p class="text-center"><%=usrqq %></p>
+										<p class="text-center"><%=usrqq%></p>
 									</div>
 								</div>
 								<div class="form-group mt-md pt-lg">
 									<label for="birth" class="col-sm-3 control-label">出生日期</label>
 									<div class="col-sm-9">
-										<p class="text-center"><%=usrbirth %></p>
+										<p class="text-center"><%=usrbirth%></p>
 									</div>
 								</div>
 								<div class="form-group mt-md pt-lg">
 									<label for="adress" class="col-sm-3 control-label">家庭地址</label>
 									<div class="col-sm-9">
-										<p class="text-center"><%=usradress %></p>
+										<p class="text-center"><%=usradress%></p>
 									</div>
 								</div>
 								<div class="form-group pt-lg pt-lg">
@@ -231,7 +231,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group mt-md pt-md">
 									<label for="username" class="col-sm-3 control-label">用户名</label>
 									<div class="col-sm-9">
-										<input type="text" value="<%=usrname %>" id="usName"
+										<input type="text" value="<%=usrname%>" id="usName"
 											class="form-control input-mydark" name="name"
 											placeholder="请输入用户名">
 									</div>
@@ -239,7 +239,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group mt-md pt-md">
 									<label for="email" class="col-sm-3 control-label">邮箱</label>
 									<div class="col-sm-9">
-										<input type="text" value="<%=usremail %>" id="usEmail"
+										<input type="text" value="<%=usremail%>" id="usEmail"
 											class="form-control input-mydark" name="email"
 											placeholder="请输入邮箱">
 									</div>
@@ -247,7 +247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group mt-md pt-md">
 									<label for="phone" class="col-sm-3 control-label">手机</label>
 									<div class="col-sm-9">
-										<input type="text" value="<%=usrphone %>" id="usPhone"
+										<input type="text" value="<%=usrphone%>" id="usPhone"
 											class="form-control input-mydark" name="phone"
 											placeholder="请输入手机">
 									</div>
@@ -255,7 +255,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group mt-md pt-md">
 									<label for="QQ" class="col-sm-3 control-label">QQ</label>
 									<div class="col-sm-9">
-										<input type="text" value="<%=usrqq %>" id="usQq"
+										<input type="text" value="<%=usrqq%>" id="usQq"
 											class="form-control input-mydark" name="QQ"
 											placeholder="请输入QQ">
 									</div>
@@ -263,7 +263,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group mt-md pt-md">
 									<label for="birth" class="col-sm-3 control-label">出生日期</label>
 									<div class="col-sm-9">
-										<input type="text" value="<%=usrbirth %>" id="usBirth"
+										<input type="text" value="<%=usrbirth%>" id="usBirth"
 											class="form-control input-mydark" name="birth"
 											placeholder="请选择出生日期">
 									</div>
@@ -271,7 +271,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="form-group mt-md pt-md">
 									<label for="adress" class="col-sm-3 control-label">家庭地址</label>
 									<div class="col-sm-9">
-										<input type="text" value="<%=usradress %>" id="usAdress"
+										<input type="text" value="<%=usradress%>" id="usAdress"
 											class="form-control input-mydark" name="adress"
 											placeholder="请输入家庭地址">
 									</div>
@@ -311,42 +311,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</thead>
 									<tbody>
 										<%
-                                        String str ="select * from adress where userid="+loginid;
-                                        int ad_i=0;
-                                        Collection<Adress> cpdtad=adressDaoImpl.getAdresss(str);
-										Iterator<Adress> cpditerad=cpdtad.iterator(); 
-                                        while(cpditerad.hasNext()){ 
-  											Adress ad=(Adress)cpditerad.next();
-  											ad_i++;
-  											String pageUrl = "content/us.jsp?edtp=edit&";
-                                         %>
+											String str ="select * from adress where userid="+loginid;
+	                                        int ad_i=0;
+	                                        Collection<Address> cpdtad=adressDaoImpl.getAdresss(str);
+											Iterator<Address> cpditerad=cpdtad.iterator(); 
+	                                        while(cpditerad.hasNext()){ 
+	  											Address ad=(Address)cpditerad.next();
+	  											ad_i++;
+	  											String pageUrl = "content/us.jsp?edtp=edit&";
+										%>
 										<tr>
-											<td class="line-td"><%=ad_i %></td>
-											<td class="line-td"><%=ad.getName() %></td>
-											<td class="line-td"><%=ad.getPhone() %></td>
-											<td class="line-td"><%=ad.getAdress() %></td>
-											<td class="line-td"><%=ad.getCode() %></td>
+											<td class="line-td"><%=ad_i%></td>
+											<td class="line-td"><%=ad.getName()%></td>
+											<td class="line-td"><%=ad.getPhone()%></td>
+											<td class="line-td"><%=ad.getAdress()%></td>
+											<td class="line-td"><%=ad.getCode()%></td>
 											<td class="line-td">
 												<button type="button"
 													class="btn btn-mydark width-p100 btn-edit"
-													onclick="window.location='<%=pageUrl+"adid="+ad.getId() %>'">修改</button>
+													onclick="window.location='<%=pageUrl+"adid="+ad.getId()%>'">修改</button>
 											</td>
 										</tr>
-										<%} %>
+										<%
+											}
+										%>
 									</tbody>
 								</table>
 							</div>
 							<%
-                                String adid=request.getParameter("adid");
-                                String name="",phone="",address="",code="";
-	     						if(adid!=null && !adid.equals("")){
-	     							Adress addr=adressDaoImpl.findAdress(Short.parseShort(adid));
-	     							name=addr.getName();
-	     							phone=addr.getPhone();
-	     							address=addr.getAdress();
-	     							code=addr.getCode();
-	     						}
-                                %>
+								String adid=request.getParameter("adid");
+							                                String name="",phone="",address="",code="";
+								     						if(adid!=null && !adid.equals("")){
+								     						Address addr=adressDaoImpl.findAdress(Short.parseShort(adid));
+								     							name=addr.getName();
+								     							phone=addr.getPhone();
+								     							address=addr.getAdress();
+								     							code=addr.getCode();
+								     						}
+							%>
 							<div id="addeditAddress"
 								class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-md">
 								<div class="pt-sm pb-sm bg-mydark text-center text-white">
