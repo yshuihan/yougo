@@ -1,39 +1,38 @@
-package com.yougo.impl;
+package com.yougo.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import com.yougo.bean.Protype;
-import com.yougo.dao.ProtypeDao;
+import com.yougo.bean.Address;
+import com.yougo.dao.AdressDao;
 import com.yougo.db.Conn;
-
 /**
- * ÉÌÆ·ÀàÐÍ²Ù×÷½Ó¿ÚµÄ¾ßÌåÊµÏÖ
- * 
+ * ï¿½Õ»ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½Êµï¿½ï¿½
  * @author Alpha
- * 
+ *
  */
-public class ProtypeDaoImpl implements ProtypeDao {
+public class AddressDaoImpl implements AdressDao {
 
 	Connection conn = null;
 	PreparedStatement pre = null;
 	ResultSet rs = null;
 
 	@Override
-	public int addProtype(Protype protype) {
-		// TODO Auto-generated method stub
+	public int addAdress(Address adress) {
 		int i = 0;
-		String sql = "insert into protype(type) values(?)";
+		String sql = "insert into adress(userid,name,phone,adress,code) values(?,?,?,?,?)";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			pre.setString(1, protype.getType());
+			pre.setShort(1, adress.getUserid());
+			pre.setString(2, adress.getName());
+			pre.setString(3, adress.getPhone());
+			pre.setString(4, adress.getAdress());
+			pre.setString(5, adress.getCode());
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -47,15 +46,19 @@ public class ProtypeDaoImpl implements ProtypeDao {
 	}
 
 	@Override
-	public int updateProtype(Protype protype) {
+	public int updateAdress(Address adress) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "update protype set type=? where id=?";
+		String sql = "update adress set userid=?,name=?,phone=?,adress=?,code=? where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			pre.setString(1, protype.getType());
-			pre.setShort(1, protype.getId());
+			pre.setShort(1, adress.getUserid());
+			pre.setString(2, adress.getName());
+			pre.setString(3, adress.getPhone());
+			pre.setString(4, adress.getAdress());
+			pre.setString(5, adress.getCode());
+			pre.setShort(6, adress.getId());
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -69,10 +72,10 @@ public class ProtypeDaoImpl implements ProtypeDao {
 	}
 
 	@Override
-	public int deleteProtype(Short id) {
+	public int deleteAdress(Short id) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "delete from protype where id=?";
+		String sql = "delete from adress where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
@@ -90,19 +93,23 @@ public class ProtypeDaoImpl implements ProtypeDao {
 	}
 
 	@Override
-	public Collection<Protype> getProtype(String str) {
+	public Collection<Address> getAdresss(String str) {
 		// TODO Auto-generated method stub
-		Collection<Protype> groups = new ArrayList<Protype>();
+		Collection<Address> groups = new ArrayList<Address>();
 		String sql = str;
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			rs = pre.executeQuery();
 			while (rs.next()) {
-				Protype prt = new Protype();
-				prt.setId(rs.getShort("protype.id"));
-				prt.setType(rs.getString("protype.type"));
-				groups.add(prt);
+				Address adr = new Address();
+				adr.setId(rs.getShort("adress.id"));
+				adr.setUserid(rs.getShort("adress.userid"));
+				adr.setName(rs.getString("adress.name"));
+				adr.setPhone(rs.getString("adress.phone"));
+				adr.setAdress(rs.getString("adress.adress"));
+				adr.setCode(rs.getString("adress.code"));
+				groups.add(adr);
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -115,20 +122,24 @@ public class ProtypeDaoImpl implements ProtypeDao {
 	}
 
 	@Override
-	public Protype findProtype(Short id) {
+	public Address findAdress(Short id) {
 		// TODO Auto-generated method stub
-		Protype prt = new Protype();
-		String sql = "select * from protype where id=?";
+		Address adr = new Address();
+		String sql = "select * from adress where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			pre.setShort(1, id);
 			rs = pre.executeQuery();
 			if (rs.next()) {
-				prt.setId(rs.getShort("protype.id"));
-				prt.setType(rs.getString("protype.type"));
+				adr.setId(rs.getShort("adress.id"));
+				adr.setUserid(rs.getShort("adress.userid"));
+				adr.setName(rs.getString("adress.name"));
+				adr.setPhone(rs.getString("adress.phone"));
+				adr.setAdress(rs.getString("adress.adress"));
+				adr.setCode(rs.getString("adress.code"));
 			} else {
-				prt = null;
+				adr = null;
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -137,7 +148,7 @@ public class ProtypeDaoImpl implements ProtypeDao {
 			Conn.release(pre);
 			Conn.release(conn);
 		}
-		return prt;
+		return adr;
 	}
 
 }

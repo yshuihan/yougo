@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="managerDaoImpl" class="com.yougo.impl.ManagerDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="managerServiceImpl" class="com.yougo.serviceImpl.ManagerServiceImpl" scope="request"></jsp:useBean>
   <%
   String password=request.getParameter("password");
   String adminid="",adminname="";
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   short mgrid= Short.parseShort(adminid);
   Manager mgr = new Manager(mgrid ,password);
   String olUrl=request.getHeader("Referer");
-  int i =managerDaoImpl.updateManager(mgr);
+  int i =managerServiceImpl.updateManager(mgr);
   if(i==0){
   	response.sendRedirect(olUrl+"&result=unseccess");
   }else{

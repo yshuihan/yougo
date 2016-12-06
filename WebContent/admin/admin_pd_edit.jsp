@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="managerDaoImpl" class="com.yougo.impl.ManagerDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="managerServiceImpl" class="com.yougo.serviceImpl.ManagerServiceImpl" scope="request"></jsp:useBean>
   <%
   String adminid="",adminname="";
   if(session.getAttribute("adminid")!=null){
@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   if(session.getAttribute("adminname")!=null){
  	 adminname=session.getAttribute("adminname").toString();
   }
-  Manager mangr=managerDaoImpl.findManager(Short.parseShort(adminid));
+  Manager mangr=managerServiceImpl.findManager(Short.parseShort(adminid));
   String oldPd = mangr.getPassword();
    %>
     <div class="manage_list col-lg-10 col-lg-offset-1">

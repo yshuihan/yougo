@@ -24,12 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<jsp:useBean id="managerDaoImpl" class="com.yougo.impl.ManagerDaoImpl" scope="request"></jsp:useBean>
+  	<jsp:useBean id="managerServiceImpl" class="com.yougo.serviceImpl.ManagerServiceImpl" scope="request"></jsp:useBean>
     <%
    	String email=request.getParameter("email");
     String password=request.getParameter("password");
     String str = "select * from manager where email='"+email+"' and password='"+password+"'";
-   	Manager mgr = managerDaoImpl.isManager(str);
+   	Manager mgr = managerServiceImpl.isManager(str);
    	if(mgr!=null){
 	   	session.setAttribute("adminid",mgr.getId());
 	   	session.setAttribute("adminname",mgr.getName());

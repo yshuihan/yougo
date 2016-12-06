@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
 	  <%
 	    String pid="",filept="",message="",result="f";
 	    if(session.getAttribute("message")!=null){
@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    //out.println(result);
 	    if(result.equals("t")){
 	    	Product usr=new Product(prid ,filept);
-			int i =productDaoImpl.updateProductImage(usr);
+			int i =productServiceImpl.updateProductImage(usr);
 			//out.println(i);
 			if(i==0){
 		  	  session.setAttribute("message", "文件上传失败！");

@@ -113,10 +113,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a class="no-underline col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark text-lg pt-sm pb-sm mt-lg" href="content/classify.jsp?typeid=4&page=1">iWatch</a>
                         <a class="no-underline col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark text-lg pt-sm pb-sm mt-lg" href="content/classify.jsp?typeid=5&page=1">配件</a>
                     </div>
-                    <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-               		<jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
-                    <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
-					<jsp:useBean id="orderdetailImpl" class="com.yougo.impl.OrderdetailImpl" scope="request"></jsp:useBean>
+                    <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+               		<jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
+                    <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
+					<jsp:useBean id="orderDetailServiceImpl" class="com.yougo.serviceImpl.OrderDetailServiceImpl" scope="request"></jsp:useBean>
                     <%
                     int pagecount = 4;
                 	String pagenum=request.getParameter("page");
@@ -137,9 +137,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }
                     String odstr="select * from orders where userid="+loginid+state+" order by createtime desc "; 
                     String odquery="select * from orders where userid="+loginid+state+" order by createtime desc "+limited; 
-                    Collection<Order> cordr=orderDaoImpl.getOrder(odquery);
+                    Collection<Order> cordr=orderServiceImpl.getOrder(odquery);
 					Iterator<Order> ordriter=cordr.iterator(); 
-					int allcount = orderDaoImpl.orderNum(odstr);
+					int allcount = orderServiceImpl.orderNum(odstr);
 					int allpage =1;
 					if(allcount%pagecount==0)
 					{
@@ -188,13 +188,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                       		while(ordriter.hasNext()){ 
 		  								Order ordr=(Order)ordriter.next();
 		  								String odrdtstr="select * from orderdetail where orderid="+ordr.getId()+" order by id";
-		  								Collection<Orderdetail> codrdt=orderdetailImpl.getOrderdetail(odrdtstr);
+		  								Collection<Orderdetail> codrdt=orderDetailServiceImpl.getOrderdetail(odrdtstr);
 										Iterator<Orderdetail> odrdtiter=codrdt.iterator();
 										if(codrdt.size()==1){
 											while(odrdtiter.hasNext()){ 
 		  										Orderdetail odrdt=(Orderdetail)odrdtiter.next();
-		  										Product opd=productDaoImpl.findProduct(odrdt.getProid());
-		  										Style osty=styleDaoImpl.findStyle(odrdt.getStyleid());
+		  										Product opd=productServiceImpl.findProduct(odrdt.getProid());
+		  										Style osty=styleServiceImpl.findStyle(odrdt.getStyleid());
 		  										//out.print(opd.getIndeximage());
 		                           	 %>
                                         <tr>
@@ -255,8 +255,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             <%
                                             while(odrdtiter.hasNext()){ 
 		  										Orderdetail odrdt=(Orderdetail)odrdtiter.next();
-		  										Product opd=productDaoImpl.findProduct(odrdt.getProid());
-		  										Style osty=styleDaoImpl.findStyle(odrdt.getStyleid());
+		  										Product opd=productServiceImpl.findProduct(odrdt.getProid());
+		  										Style osty=styleServiceImpl.findStyle(odrdt.getStyleid());
                                             %>
                                             <tr class="add-pro add-pro<%=ordr.getOrdernumber() %>">
                                                 <td class="pt-lg pb-lg"></td>
@@ -367,7 +367,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                         </div>
                         <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                            <a class="no-underline" href="javascript:;">@本网站版权由jude所有  2015-2018</a>
+                            <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
                         </div>
                     </div>
                 </div>

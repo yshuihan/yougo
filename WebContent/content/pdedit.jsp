@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
     <%
     String password=request.getParameter("password");
     String loginid="",loginname="";
@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     short usrid= Short.parseShort(loginid);
     User usr = new User(usrid ,password);
     String olUrl=request.getHeader("Referer");
-    int i =userDaoImpl.updateUserPassword(usr);
+    int i =userServiceImpl.updateUserPassword(usr);
     if(i==0){
   	  response.sendRedirect(olUrl+"&result=unseccess");
     }else{

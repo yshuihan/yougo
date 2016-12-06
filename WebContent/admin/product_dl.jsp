@@ -26,17 +26,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-    <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
-    <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="proimagesServiceImpl" class="com.yougo.serviceImpl.ProImageServiceImpl" scope="request"></jsp:useBean>
   	<%
   	String pid=request.getParameter("pid");
   	out.print(pid);
   	int i=0,j=0,k=0;
-  	i=productDaoImpl.deleteProduct(Short.parseShort(pid));
+  	i=productServiceImpl.deleteProduct(Short.parseShort(pid));
   	if(i!=0){
-  		j=styleDaoImpl.deleteproStyle(Short.parseShort(pid));
-  		k=proimagesDaoImpl.deleteproProimages(Short.parseShort(pid));
+  		j=styleServiceImpl.deleteproStyle(Short.parseShort(pid));
+  		k=proimagesServiceImpl.deleteproProimages(Short.parseShort(pid));
   	}
   	String olUrl=request.getHeader("Referer");
   	response.sendRedirect("admin.jsp?list=2");

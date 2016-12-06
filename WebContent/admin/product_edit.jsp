@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
   	<%
   	String groundingstate="否";
   	String id=request.getParameter("id");
@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	String olUrl=request.getHeader("Referer");
   	int i=0;
   	while(i==0){
-  		i=productDaoImpl.updateProductEdit(pd);
+  		i=productServiceImpl.updateProductEdit(pd);
   	}
   	response.sendRedirect("admin.jsp?list=2");
   	//out.print(pd.getGrounding());

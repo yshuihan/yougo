@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="managerDaoImpl" class="com.yougo.impl.ManagerDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="managerServiceImpl" class="com.yougo.serviceImpl.ManagerServiceImpl" scope="request"></jsp:useBean>
     <div class="manage_list col-lg-10 col-lg-offset-1">
 	    <div class="table-responsive">
 	        <table class="table table-hover">
@@ -51,9 +51,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   	String limited="limit " + start + "," + pagecount;
 			   	String str="select * from manager order by id "+limited;
 			   	String query="select * from manager order by id ";
-   				Collection<Manager> cmgr=managerDaoImpl.getManager(str);
+   				Collection<Manager> cmgr=managerServiceImpl.getManager(str);
    				Iterator<Manager> mgriter=cmgr.iterator();
-   				int allcount = managerDaoImpl.managerNum(query);
+   				int allcount = managerServiceImpl.managerNum(query);
 			   	int allpage =1;
 				if(allcount%pagecount==0)
 				{

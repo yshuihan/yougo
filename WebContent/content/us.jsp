@@ -1,4 +1,4 @@
-<%@page import="com.yougo.impl.UserDaoImpl"%>
+<%@page import="com.yougo.daoImpl.UserDaoImpl"%>
 <%@ page language="java" import="java.util.*,java.text.*"
 	pageEncoding="utf-8"%>
 <%@page import="com.yougo.bean.User"%>
@@ -39,10 +39,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-	<jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl"
-		scope="request"></jsp:useBean>
-	<jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl"
-		scope="request"></jsp:useBean>
+	<jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
+	<jsp:useBean id="adressServiceImpl" class="com.yougo.serviceImpl.AddressServiceImpl" scope="request"></jsp:useBean>
 	<%
 		String loginid="",loginname="",headimage="",oldPd="";
 	    if(session.getAttribute("loginid")==null || session.getAttribute("loginname")==null ||session.getAttribute("loginid")=="" || session.getAttribute("loginname")=="")
@@ -153,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						                            if(!loginid.equals("")){
 						                            	usrid= Short.parseShort(loginid);
 						                            }
-						                            User usr=userDaoImpl.findUser(usrid);
+						                            User usr=userServiceImpl.findUser(usrid);
 						                            String usrname = usr.getName();
 						                            String usremail = usr.getEmail();
 						                            String usrphone = usr.getPhone();
@@ -313,7 +311,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<%
 											String str ="select * from adress where userid="+loginid;
 	                                        int ad_i=0;
-	                                        Collection<Address> cpdtad=adressDaoImpl.getAdresss(str);
+	                                        Collection<Address> cpdtad=adressServiceImpl.getAdresss(str);
 											Iterator<Address> cpditerad=cpdtad.iterator(); 
 	                                        while(cpditerad.hasNext()){ 
 	  											Address ad=(Address)cpditerad.next();
@@ -340,14 +338,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 							<%
 								String adid=request.getParameter("adid");
-							                                String name="",phone="",address="",code="";
-								     						if(adid!=null && !adid.equals("")){
-								     						Address addr=adressDaoImpl.findAdress(Short.parseShort(adid));
-								     							name=addr.getName();
-								     							phone=addr.getPhone();
-								     							address=addr.getAdress();
-								     							code=addr.getCode();
-								     						}
+                                String name="",phone="",address="",code="";
+	     						if(adid!=null && !adid.equals("")){
+	     						Address addr=adressServiceImpl.findAdress(Short.parseShort(adid));
+	     							name=addr.getName();
+	     							phone=addr.getPhone();
+	     							address=addr.getAdress();
+	     							code=addr.getCode();
+	     						}
 							%>
 							<div id="addeditAddress"
 								class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pb-md">
@@ -498,8 +496,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div
 						class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-						<a class="no-underline" href="javascript:;">@本网站版权由jude所有
-							2015-2018</a>
+						<a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
 					</div>
 				</div>
 			</div>

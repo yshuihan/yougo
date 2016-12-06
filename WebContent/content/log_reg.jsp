@@ -105,15 +105,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="col-lg-offset-2 col-lg-4 col-md-offset-2 col-md-5 col-sm-offset-0 col-sm-6 col-xs-offset-2 col-xs-8 p-none mt-lg pl-sm pr-sm">
                         <div id="tabContainer" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-none">    
                             <ul id="myTab" class="nav nav-tabs text-center">
-                                <li id="logintab" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none active"><a href="content/log_reg.jsp?type=login"><h4 class="m-none mt-xs mb-xs">LOGIN</h4></a></li>
-                                <li id="registertab" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none"><a href="content/log_reg.jsp?type=register"><h4 class="m-none mt-xs mb-xs">REGISTER</h4></a></li>
+                                <li id="logintab" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none active"><a href="content/log_reg.jsp?type=login"><h4 class="m-none mt-xs mb-xs">登录</h4></a></li>
+                                <li id="registertab" class="col-lg-6 col-md-6 col-sm-6 col-xs-6 p-none"><a href="content/log_reg.jsp?type=register"><h4 class="m-none mt-xs mb-xs">注册</h4></a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-none tab-pane fade in active" id="tblogin">
                                     <div id="login" class="theme-orange-border col-lg-12 col-md-12 col-sm-12 col-xs-12 p-none">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center theme-orange-bg login-box-height pt-xlg">
-                                            <h1 class="m-none mt-xlg pt-xlg text-white">LOGIN</h1>
-                                            <p class="pt-sm text-white">REGISTER&gt;&gt;</p>
+                                            <h1 class="m-none mt-xlg pt-xlg text-white">登录</h1>
+                                            <p class="pt-sm text-white">注册&gt;&gt;</p>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-grey">
                                             <form action="content/login_ok.jsp" method="post" onsubmit="return login_True();" class="form-horizontal">
@@ -131,10 +131,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 </div>
                                                 <div class="form-group pt-lg pb-lg mb-lg">
                                                     <div class="col-sm-6">
-                                                        <button id="Login" type="submit" class="btn btn-mydark width-p100">login</button>
+                                                        <button id="Login" type="submit" class="btn btn-mydark width-p100">登录</button>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <button type="reset" class="btn btn-mydark width-p100">reset</button>
+                                                        <button type="reset" class="btn btn-mydark width-p100">重置</button>
                                                     </div>
                                                 </div>
                                             </form> 
@@ -144,8 +144,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-none tab-pane fade" id="tbregister">
                                     <div id="register" class="theme-orange-border col-lg-12 col-md-12 col-sm-12 col-xs-12 p-none">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center theme-orange-bg login-box-height pt-xlg">
-                                            <h1 class="m-none mt-xlg pt-xlg text-white">REGISTER</h1>
-                                            <p class="pt-sm text-white">&lt;&lt;LOGIN</p>
+                                            <h1 class="m-none mt-xlg pt-xlg text-white">注册</h1>
+                                            <p class="pt-sm text-white">&lt;&lt;登录</p>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bg-grey">
                                             <form action="content/register.jsp" method="post" onsubmit="return register_True();" class="form-horizontal">
@@ -175,10 +175,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 </div>
                                                 <div class="form-group pt-lg pb-lg mb-lg">
                                                     <div class="col-sm-6">
-                                                        <button id="Register" type="submit" class="btn btn-mydark width-p100">register</button>
+                                                        <button id="Register" type="submit" class="btn btn-mydark width-p100">注册</button>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <button type="reset" class="btn btn-mydark width-p100">reset</button>
+                                                        <button type="reset" class="btn btn-mydark width-p100">重置</button>
                                                     </div>
                                                 </div>
                                             </form> 
@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                     </div>
                     <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                        <a class="no-underline" href="javascript:;">@本网站版权由jude所有  2015-2018</a>
+                        <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
                     </div>
                 </div>
             </div>

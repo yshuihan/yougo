@@ -94,8 +94,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	            </div>
-	            <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
+	            <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="proTypeServiceImpl" class="com.yougo.serviceImpl.ProTypeServiceImpl" scope="request"></jsp:useBean>
                 <%
 			    	String prid=request.getParameter("pid");
 			    	String proname="";
@@ -106,9 +106,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    		response.sendRedirect(olUrl);
 			    	}else{
 				    	short pid=Short.parseShort(prid);
-				    	pd=productDaoImpl.findProduct(pid);
+				    	pd=productServiceImpl.findProduct(pid);
 						short protypeid=pd.getTypeid();
-						ptp=protypeDaoImpl.findProtype(protypeid);
+						ptp=proTypeServiceImpl.findProtype(protypeid);
 						proname=pd.getName();
 			     %>
                 <div id="mainContent" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 p-none pt-xlg mt-lg">
@@ -178,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                         </div>
                         <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                            <a class="no-underline" href="javascript:;">@本网站版权由jude所有  2015-2018</a>
+                            <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
                         </div>
                     </div>
                 </div>

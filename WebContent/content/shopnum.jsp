@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="shopcartDaoImpl" class="com.yougo.impl.ShopcartDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="shopCartServiceImpl" class="com.yougo.serviceImpl.ShopCartServiceImpl" scope="request"></jsp:useBean>
     <%
     String loginid="",loginname="";
     if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:00");
     String datetime=sdf.format(dt);
     Shopcart spct=new Shopcart(spctid,pronum,datetime);
-    int i=shopcartDaoImpl.updateTheShopcart(spct);
+    int i=shopCartServiceImpl.updateTheShopcart(spct);
     response.sendRedirect("shop.jsp");
    	/* if(i==0){
     	//out.print("aa");

@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+  	<jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
     <%
     int pagecount = 5;
     String pagenum=request.getParameter("page");
@@ -39,9 +39,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	String limited="limit " + start + "," + pagecount;
    	String str="select * from user order by id "+limited;
    	String query="select * from user order by id ";
-   	Collection<User> cusr=userDaoImpl.getUser(str);
+   	Collection<User> cusr=userServiceImpl.getUser(str);
    	Iterator<User> usriter=cusr.iterator(); 
-   	int allcount = userDaoImpl.userNum(query);
+   	int allcount = userServiceImpl.userNum(query);
    	int allpage =1;
 	if(allcount%pagecount==0)
 	{

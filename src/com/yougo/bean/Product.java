@@ -3,7 +3,7 @@ package com.yougo.bean;
 import java.sql.Timestamp;
 
 /**
- * 商品实体
+ * 锟斤拷品实锟斤拷
  */
 
 public class Product implements java.io.Serializable {
@@ -223,5 +223,17 @@ public class Product implements java.io.Serializable {
 	public void setDiscount(Float discount) {
 		this.discount = discount;
 	}
+
+	/*@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", typeid=" + typeid
+				+ ", price=" + price + ", oldprice=" + oldprice + ", procode="
+				+ procode + ", groundingstate="
+				+ groundingstate + ", grounding=" + grounding
+				+ ", undercarriage=" + undercarriage + ", indeximage="
+				+ indeximage + ", clicknum=" + clicknum + ", salenum="
+				+ salenum + ", allocunt=" + allocunt + ", discount=" + discount
+				+ "]";
+	}*/
 
 }

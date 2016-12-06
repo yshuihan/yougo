@@ -102,11 +102,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	            </div>
-	            <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-    			<jsp:useBean id="shopcartDaoImpl" class="com.yougo.impl.ShopcartDaoImpl" scope="request"></jsp:useBean>
-  				<jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
+	            <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+    			<jsp:useBean id="shopCartServiceImpl" class="com.yougo.serviceImpl.ShopCartServiceImpl" scope="request"></jsp:useBean>
+  				<jsp:useBean id="adressServiceImpl" class="com.yougo.serviceImpl.AddressServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="proTypeServiceImpl" class="com.yougo.serviceImpl.ProTypeServiceImpl" scope="request"></jsp:useBean>
   				<div id="mainContent" class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 p-none pt-xlg mt-lg">
                     <div id="subNavigation" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center text-white border-bottom-mydark mb-md">
                         <a class="no-underline text-white" href="content/classify.jsp?page=1"><h2 class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark m-none pt-xlg pb-xs">APPLE</h2></a>
@@ -121,10 +121,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <%
                             	String addrstr="select * from adress where userid=" + loginid+ " order by id ";
-                            	                        Collection<Address> ccaddr=adressDaoImpl.getAdresss(addrstr);
+                            	                        Collection<Address> ccaddr=adressServiceImpl.getAdresss(addrstr);
                             					Iterator<Address> addriter=ccaddr.iterator();
                             					String spctstr="select * from shopcart where userid=" + loginid+ " order by id ";
-                            					Collection<Shopcart> ccspct=shopcartDaoImpl.getShopcart(spctstr);
+                            					Collection<Shopcart> ccspct=shopCartServiceImpl.getShopcart(spctstr);
                             					Iterator<Shopcart> spctiter=ccspct.iterator();
                             %>
                             <div id="userAddress" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-md mb-lg">
@@ -173,8 +173,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                                    if(ccspct.size()>0){
 				                       		while(spctiter.hasNext()){ 
 				  								Shopcart spct=(Shopcart)spctiter.next();
-				  								Product opd=productDaoImpl.findProduct(spct.getProid());
-				  								Style osty=styleDaoImpl.findStyle(spct.getStyleid());
+				  								Product opd=productServiceImpl.findProduct(spct.getProid());
+				  								Style osty=styleServiceImpl.findStyle(spct.getStyleid());
 			                            %>
 	                                        <tr>
 	                                            <td class="line-td pt-lg pb-lg">
@@ -238,7 +238,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                         </div>
                         <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                            <a class="no-underline" href="javascript:;">@本网站版权由jude所有  2015-2018</a>
+                            <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
                         </div>
                     </div>
                 </div>

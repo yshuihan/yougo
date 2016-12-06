@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
     <%
   	String loginid="",loginname="";
     if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     Order odr =new Order(Short.parseShort(orderid) ,"已签收");
     int i=0;
     while(i==0){
-    	i=orderDaoImpl.updateOrderState(odr);
+    	i=orderServiceImpl.updateOrderState(odr);
     }
     response.sendRedirect(olUrl);
     %>

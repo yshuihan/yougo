@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
   <%
   String state=request.getParameter("state");
   String ordid=request.getParameter("ordid");
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   short orid= Short.parseShort(ordid);
   Order ordr = new Order(orid,state);
   String olUrl=request.getHeader("Referer");
-  int i =orderDaoImpl.updateOrderState(ordr);
+  int i =orderServiceImpl.updateOrderState(ordr);
   if(i==0){
   	response.sendRedirect(olUrl+"&stresult=unseccess");
   }else{

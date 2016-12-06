@@ -2,11 +2,11 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	  <servlet>
 	      <servlet-name>uploadHandleServlet</servlet-name>
-	      <servlet-class>com.jdbc.UploadHandleServlet</servlet-class>
+	      <servlet-class>com.yougo.servlet.UploadHandleServlet</servlet-class>
  	  </servlet>
  	  <servlet>
 	       <servlet-name>ListFileServlet</servlet-name>
-	       <servlet-class>com.jdbc.ListFileServlet</servlet-class>
+	       <servlet-class>com.yougo.servlet.ListFileServlet</servlet-class>
 	  </servlet> 
 	  
       <servlet-mapping>
@@ -17,4 +17,7 @@
 	       <servlet-name>ListFileServlet</servlet-name>
 	      <url-pattern>/servlet/ListFileServlet</url-pattern>
 	  </servlet-mapping> 
+	  <session-config>
+	      <session-timeout>3600</session-timeout>
+	  </session-config>
 </web-app>

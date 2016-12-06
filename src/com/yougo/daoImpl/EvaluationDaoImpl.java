@@ -1,4 +1,4 @@
-package com.yougo.impl;
+package com.yougo.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,34 +9,37 @@ import java.util.Date;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import com.yougo.bean.Orderdetail;
-import com.yougo.dao.OrderdetailDao;
+import com.yougo.bean.Evaluation;
+import com.yougo.dao.EvaluationDao;
 import com.yougo.db.Conn;
 
 /**
- * ¶©µ¥ÏêÇé²Ù×÷µÄÊµÏÖ
+ * ï¿½ï¿½ï¿½Û²ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½Êµï¿½ï¿½
  * @author Alpha
  * 
  */
-public class OrderdetailImpl implements OrderdetailDao {
+public class EvaluationDaoImpl implements EvaluationDao {
 
 	Connection conn = null;
 	PreparedStatement pre = null;
 	ResultSet rs = null;
 
 	@Override
-	public int addOrderdetail(Orderdetail orderdetail) {
+	public int addEvaluation(Evaluation evaluation) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "insert into orderdetail(orderid,proid,num,price,styleid) values(?,?,?,?,?)";
+		String sql = "insert into evaluation(proid,userid,content,star,createtime) values(?,?,?,?,?)";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			pre.setShort(1, orderdetail.getOrderid());
-			pre.setShort(2, orderdetail.getProid());
-			pre.setShort(3, orderdetail.getNum());
-			pre.setFloat(4, orderdetail.getPrice());
-			pre.setShort(5, orderdetail.getStyleid());
+			pre.setShort(1, evaluation.getProid());
+			pre.setShort(2, evaluation.getUserid());
+			pre.setString(3, evaluation.getContent());
+			pre.setShort(4, evaluation.getStar());
+			Date now = new Date();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String date = df.format(now);
+			pre.setString(5, date);
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -49,7 +52,7 @@ public class OrderdetailImpl implements OrderdetailDao {
 		return i;
 	}
 
-	public int orderdetailNum(String sql) {
+	public int evaluationNum(String sql) {
 		// TODO Auto-generated method stub
 		int i = 0;
 		try {
@@ -71,20 +74,22 @@ public class OrderdetailImpl implements OrderdetailDao {
 	}
 
 	@Override
-	public int updateOrderdetail(Orderdetail orderdetail) {
+	public int updateEvaluation(Evaluation evaluation) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "update orderdetail set orderid=?,proid=?,num=?,price=?,styleid=? where id=?";
+		String sql = "update evaluation set proid=?,userid=?,content=?,star=?,createtime=? where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			// pre=(PreparedStatement) conn.prepareStatement(sql);
-			pre.setShort(1, orderdetail.getOrderid());
-			pre.setShort(2, orderdetail.getProid());
-			pre.setShort(3, orderdetail.getNum());
-			pre.setFloat(4, orderdetail.getPrice());
-			pre.setShort(5, orderdetail.getStyleid());
-			pre.setShort(6, orderdetail.getId());
+			pre.setShort(1, evaluation.getProid());
+			pre.setShort(2, evaluation.getUserid());
+			pre.setString(3, evaluation.getContent());
+			pre.setShort(4, evaluation.getStar());
+			Date now = new Date();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String date = df.format(now);
+			pre.setString(5, date);
+			pre.setShort(6, evaluation.getId());
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -98,10 +103,10 @@ public class OrderdetailImpl implements OrderdetailDao {
 	}
 
 	@Override
-	public int deleteOrderdetail(Short id) {
+	public int deleteEvaluation(Short id) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "delete from orderdetail where id=?";
+		String sql = "delete from evaluation where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
@@ -119,23 +124,23 @@ public class OrderdetailImpl implements OrderdetailDao {
 	}
 
 	@Override
-	public Collection<Orderdetail> getOrderdetail(String str) {
+	public Collection<Evaluation> getEvaluation(String str) {
 		// TODO Auto-generated method stub
-		Collection<Orderdetail> groups = new ArrayList<Orderdetail>();
+		Collection<Evaluation> groups = new ArrayList<Evaluation>();
 		String sql = str;
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			rs = pre.executeQuery();
 			while (rs.next()) {
-				Orderdetail ordt = new Orderdetail();
-				ordt.setId(rs.getShort("orderdetail.id"));
-				ordt.setOrderid(rs.getShort("orderdetail.orderid"));
-				ordt.setProid(rs.getShort("orderdetail.proid"));
-				ordt.setNum(rs.getShort("orderdetail.num"));
-				ordt.setPrice(rs.getFloat("orderdetail.price"));
-				ordt.setStyleid(rs.getShort("orderdetail.styleid"));
-				groups.add(ordt);
+				Evaluation eval = new Evaluation();
+				eval.setId(rs.getShort("evaluation.id"));
+				eval.setProid(rs.getShort("evaluation.proid"));
+				eval.setUserid(rs.getShort("evaluation.userid"));
+				eval.setContent(rs.getString("evaluation.content"));
+				eval.setStar(rs.getShort("evaluation.star"));
+				eval.setCreatetime(rs.getString("evaluation.createtime"));
+				groups.add(eval);
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -148,24 +153,24 @@ public class OrderdetailImpl implements OrderdetailDao {
 	}
 
 	@Override
-	public Orderdetail findOrderdetail(Short id) {
+	public Evaluation findEvaluation(Short id) {
 		// TODO Auto-generated method stub
-		Orderdetail ordt = new Orderdetail();
-		String sql = "select * from orderdetail where id=?";
+		Evaluation eval = new Evaluation();
+		String sql = "select * from evaluation where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			pre.setShort(1, id);
 			rs = pre.executeQuery();
 			if (rs.next()) {
-				ordt.setId(rs.getShort("orderdetail.id"));
-				ordt.setOrderid(rs.getShort("orderdetail.orderid"));
-				ordt.setProid(rs.getShort("orderdetail.proid"));
-				ordt.setNum(rs.getShort("orderdetail.num"));
-				ordt.setPrice(rs.getFloat("orderdetail.price"));
-				ordt.setStyleid(rs.getShort("orderdetail.styleid"));
+				eval.setId(rs.getShort("evaluation.id"));
+				eval.setProid(rs.getShort("evaluation.proid"));
+				eval.setUserid(rs.getShort("evaluation.userid"));
+				eval.setContent(rs.getString("evaluation.content"));
+				eval.setStar(rs.getShort("evaluation.star"));
+				eval.setCreatetime(rs.getString("evaluation.createtime"));
 			} else {
-				ordt = null;
+				eval = null;
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -174,7 +179,7 @@ public class OrderdetailImpl implements OrderdetailDao {
 			Conn.release(pre);
 			Conn.release(conn);
 		}
-		return ordt;
+		return eval;
 	}
 
 }

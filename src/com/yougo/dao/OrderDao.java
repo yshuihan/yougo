@@ -5,7 +5,7 @@ import java.util.Collection;
 import com.yougo.bean.Order;
 
 /**
- * ¶©µ¥²Ù×÷½Ó¿Ú
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½
  * @author Alpha
  * 
  */
@@ -17,6 +17,7 @@ public interface OrderDao {
 	//
 	public int updateOrder(Order order);
 
+	public int updateOrderState(Order order);
 	//
 	public int deleteOrder(Short id);
 

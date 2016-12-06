@@ -24,19 +24,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
     <%
     String email=request.getParameter("email");
     String name=request.getParameter("name");
     String password=request.getParameter("password");
     String repassword=request.getParameter("repassword");
    	String str = "select * from user where email='"+email+"'";
-   	User usr = userDaoImpl.isUser(str);
+   	User usr = userServiceImpl.isUser(str);
    	if(usr!=null){
    		response.sendRedirect("log_reg.jsp?type=register&result=exist");
    	}else{
 		User usrf = new User(name,email,password);
-   		int i=userDaoImpl.addUser(usrf);
+   		int i=userServiceImpl.addUser(usrf);
    		if(i==0){
    			response.sendRedirect("log_reg.jsp?type=register&result=unseccess");
    		}else{

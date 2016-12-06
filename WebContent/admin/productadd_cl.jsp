@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
   	<%
   	String groundingstate="否";
   	String name="",protypeid="0",procode="",price="0",oldprice="0",parameter="",upTime="",downTime="",allcount="",discount="",indexiamge="";
@@ -83,7 +83,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	groundingstate,upTime,downTime,indexiamge,theallcount,thediscount);
   	String olUrl=request.getHeader("Referer");
   	int i=0;
-  	i=productDaoImpl.addtheProduct(pd);
+  	i=productServiceImpl.addtheProduct(pd);
   	//out.print(upTime);
   	response.sendRedirect("admin.jsp?list=2");
   	//out.print(pd.getGrounding());

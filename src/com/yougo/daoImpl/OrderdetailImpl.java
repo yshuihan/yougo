@@ -1,4 +1,4 @@
-package com.yougo.impl;
+package com.yougo.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,31 +9,34 @@ import java.util.Date;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import com.yougo.bean.Manager;
-import com.yougo.dao.ManagerDao;
+import com.yougo.bean.Orderdetail;
+import com.yougo.dao.OrderdetailDao;
 import com.yougo.db.Conn;
+
 /**
- * ¹ÜÀíÔ±±í²Ù×÷µÄ¾ßÌåÊµÏÖ
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
  * @author Alpha
- *
+ * 
  */
-public class ManagerDaoImpl implements ManagerDao {
+public class OrderdetailImpl implements OrderdetailDao {
 
 	Connection conn = null;
 	PreparedStatement pre = null;
 	ResultSet rs = null;
 
 	@Override
-	public int Manager(com.yougo.bean.Manager manager) {
+	public int addOrderdetail(Orderdetail orderdetail) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "insert into manager(name,email,password) values(?,?,?)";
+		String sql = "insert into orderdetail(orderid,proid,num,price,styleid) values(?,?,?,?,?)";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			pre.setString(1, manager.getName());
-			pre.setString(2, manager.getEmail());
-			pre.setString(3, manager.getPassword());
+			pre.setShort(1, orderdetail.getOrderid());
+			pre.setShort(2, orderdetail.getProid());
+			pre.setShort(3, orderdetail.getNum());
+			pre.setFloat(4, orderdetail.getPrice());
+			pre.setShort(5, orderdetail.getStyleid());
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -46,7 +49,7 @@ public class ManagerDaoImpl implements ManagerDao {
 		return i;
 	}
 
-	public int managerNum(String sql) {
+	public int orderdetailNum(String sql) {
 		// TODO Auto-generated method stub
 		int i = 0;
 		try {
@@ -68,15 +71,20 @@ public class ManagerDaoImpl implements ManagerDao {
 	}
 
 	@Override
-	public int updateManager(com.yougo.bean.Manager manager) {
+	public int updateOrderdetail(Orderdetail orderdetail) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "update manager set password=? where id=?";
+		String sql = "update orderdetail set orderid=?,proid=?,num=?,price=?,styleid=? where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			pre.setString(1, manager.getPassword());
-			pre.setShort(2, manager.getId());
+			// pre=(PreparedStatement) conn.prepareStatement(sql);
+			pre.setShort(1, orderdetail.getOrderid());
+			pre.setShort(2, orderdetail.getProid());
+			pre.setShort(3, orderdetail.getNum());
+			pre.setFloat(4, orderdetail.getPrice());
+			pre.setShort(5, orderdetail.getStyleid());
+			pre.setShort(6, orderdetail.getId());
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -90,10 +98,10 @@ public class ManagerDaoImpl implements ManagerDao {
 	}
 
 	@Override
-	public int deleteManager(Short id) {
+	public int deleteOrderdetail(Short id) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "delete from manager where id=?";
+		String sql = "delete from orderdetail where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
@@ -111,21 +119,23 @@ public class ManagerDaoImpl implements ManagerDao {
 	}
 
 	@Override
-	public Collection<com.yougo.bean.Manager> getManager(String str) {
+	public Collection<Orderdetail> getOrderdetail(String str) {
 		// TODO Auto-generated method stub
-		Collection<Manager> groups = new ArrayList<Manager>();
+		Collection<Orderdetail> groups = new ArrayList<Orderdetail>();
 		String sql = str;
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			rs = pre.executeQuery();
 			while (rs.next()) {
-				Manager mgr = new Manager();
-				mgr.setId(rs.getShort("manager.id"));
-				mgr.setName(rs.getString("manager.name"));
-				mgr.setEmail(rs.getString("manager.email"));
-				mgr.setPassword(rs.getString("manager.password"));
-				groups.add(mgr);
+				Orderdetail ordt = new Orderdetail();
+				ordt.setId(rs.getShort("orderdetail.id"));
+				ordt.setOrderid(rs.getShort("orderdetail.orderid"));
+				ordt.setProid(rs.getShort("orderdetail.proid"));
+				ordt.setNum(rs.getShort("orderdetail.num"));
+				ordt.setPrice(rs.getFloat("orderdetail.price"));
+				ordt.setStyleid(rs.getShort("orderdetail.styleid"));
+				groups.add(ordt);
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -138,22 +148,24 @@ public class ManagerDaoImpl implements ManagerDao {
 	}
 
 	@Override
-	public com.yougo.bean.Manager findManager(Short id) {
+	public Orderdetail findOrderdetail(Short id) {
 		// TODO Auto-generated method stub
-		Manager mgr = new Manager();
-		String sql = "select * from manager where id=?";
+		Orderdetail ordt = new Orderdetail();
+		String sql = "select * from orderdetail where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			pre.setShort(1, id);
 			rs = pre.executeQuery();
 			if (rs.next()) {
-				mgr.setId(rs.getShort("manager.id"));
-				mgr.setName(rs.getString("manager.name"));
-				mgr.setEmail(rs.getString("manager.email"));
-				mgr.setPassword(rs.getString("manager.password"));
+				ordt.setId(rs.getShort("orderdetail.id"));
+				ordt.setOrderid(rs.getShort("orderdetail.orderid"));
+				ordt.setProid(rs.getShort("orderdetail.proid"));
+				ordt.setNum(rs.getShort("orderdetail.num"));
+				ordt.setPrice(rs.getFloat("orderdetail.price"));
+				ordt.setStyleid(rs.getShort("orderdetail.styleid"));
 			} else {
-				mgr = null;
+				ordt = null;
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -162,33 +174,7 @@ public class ManagerDaoImpl implements ManagerDao {
 			Conn.release(pre);
 			Conn.release(conn);
 		}
-		return mgr;
-	}
-
-	public Manager isManager(String str) {
-		// TODO Auto-generated method stub
-		Manager mgr = new Manager();
-		String sql = str;
-		try {
-			conn = (Connection) Conn.getConnection();
-			pre = (PreparedStatement) conn.prepareStatement(sql);
-			rs = pre.executeQuery();
-			if (rs.next()) {
-				mgr.setId(rs.getShort("manager.id"));
-				mgr.setName(rs.getString("manager.name"));
-				mgr.setEmail(rs.getString("manager.email"));
-				mgr.setPassword(rs.getString("manager.password"));
-			} else {
-				mgr = null;
-			}
-		} catch (SQLException e) {
-			System.out.print(e.getMessage());
-		} finally {
-			Conn.release(rs);
-			Conn.release(pre);
-			Conn.release(conn);
-		}
-		return mgr;
+		return ordt;
 	}
 
 }

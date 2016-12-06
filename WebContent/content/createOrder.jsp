@@ -99,10 +99,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	            </div>
-	            <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-	            <jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
+	            <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+	            <jsp:useBean id="adressServiceImpl" class="com.yougo.serviceImpl.AddressServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="proTypeServiceImpl" class="com.yougo.serviceImpl.ProTypeServiceImpl" scope="request"></jsp:useBean>
                 <%
                 	String prid=request.getParameter("pid");
                                 String styleid=request.getParameter("styleid");
@@ -120,12 +120,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	   					response.sendRedirect(olUrl);
                 	    	}else{
                 		    	short pid=Short.parseShort(prid);
-                		    	Product pd=productDaoImpl.findProduct(pid);
+                		    	Product pd=productServiceImpl.findProduct(pid);
                 				proname=pd.getName();
                 				typeid=pd.getTypeid().toString();
-                				Protype pty=protypeDaoImpl.findProtype(pd.getTypeid());
+                				Protype pty=proTypeServiceImpl.findProtype(pd.getTypeid());
                 				typename=pty.getType();
-                				Style sty=styleDaoImpl.findStyle(Short.parseShort(styleid));
+                				Style sty=styleServiceImpl.findStyle(Short.parseShort(styleid));
                 				stylename=sty.getName();
                 				Date dt =new Date();
                 				String dtstr= Long.toString(dt.getTime());
@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <%
                         	String str="select * from adress where userid=" + loginid+ " order by id ";
-                                                Collection<Address> ccaddr=adressDaoImpl.getAdresss(str);
+                                                Collection<Address> ccaddr=adressServiceImpl.getAdresss(str);
                         				Iterator<Address> addriter=ccaddr.iterator();
                         %>
                         <div id="userAddress" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-md mb-lg">
@@ -237,7 +237,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                         </div>
                         <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                            <a class="no-underline" href="javascript:;">@本网站版权由jude所有  2015-2018</a>
+                            <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
                         </div>
                     </div>
                 </div>

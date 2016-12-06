@@ -66,7 +66,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						               <li><a href="content/login_out.jsp">退出</a></li>
 						            </ul>
 	                            </li>
-	                         <%}else{ %>
+	                         <%
+	                         }else{ 
+	                         %>
 	                            <li class="float-left">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover" href="content/log_reg.jsp?type=login">登录</a>
 	                            </li>
@@ -140,13 +142,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div id="newContent" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 grey-bg">
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bgimg-cover newpro-height relative" style="background-image:url(content/assets/images/photo/hero_large1.png)">
                             <div class="text-center absolute newpro-position1">
-                                <h4>iPad mini4</h4>
+                                <a href="content/detail.jsp?pid=14"><h4>iPad mini4</h4></a>
                                 <p>小身型，大有身手！</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bgimg-cover newpro-height relative" style="background-image:url(content/assets/images/photo/hero_large2.jpg)">
                             <div class="text-center absolute newpro-position2">
-                                <h4>IOS9</h4>
+                                <a href="content/detail.jsp?pid=14"><h4>IOS10</h4></a>
                                 <p>现已推出</p>
                             </div>
                         </div>
@@ -173,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                         </div>
                         <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                            <a class="no-underline" href="javascript:;">@本网站版权由jude所有  2015-2018</a>
+                            <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
                         </div>
                     </div>
                 </div>

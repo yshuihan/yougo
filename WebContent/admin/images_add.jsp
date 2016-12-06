@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="proimageServiceImpl" class="com.yougo.serviceImpl.ProImageServiceImpl" scope="request"></jsp:useBean>
 	  <%
 	    String alt="",pid="",filept="",message="",result="f";
 	    if(session.getAttribute("message")!=null){
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			int i=0;
 			//out.println(sty.getImage());
 			while(i==0){
-				i =proimagesDaoImpl.addProimages(primg);
+				i =proimageServiceImpl.addProimages(primg);
 			}
 	    }
 	    response.sendRedirect("/yougo/admin/admin.jsp?list=2&btntp=images&protypeid=0&pid="+prid);

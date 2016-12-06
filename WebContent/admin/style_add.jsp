@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
 	  <%
 	    String name="",pid="",filept="",message="",result="f";
 	    if(session.getAttribute("message")!=null){
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			int i=0;
 			//out.println(sty.getImage());
 			while(i==0){
-				i =styleDaoImpl.addtheStyle(sty);
+				i =styleServiceImpl.addtheStyle(sty);
 			}
 	    }
 	    response.sendRedirect("/yougo/admin/admin.jsp?list=2&btntp=style&protypeid=0&pid="+prid);

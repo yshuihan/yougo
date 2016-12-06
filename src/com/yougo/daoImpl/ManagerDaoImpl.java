@@ -1,45 +1,36 @@
-package com.yougo.impl;
+package com.yougo.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-import com.yougo.bean.Evaluation;
-import com.yougo.dao.EvaluationDao;
+import com.yougo.bean.Manager;
+import com.yougo.dao.ManagerDao;
 import com.yougo.db.Conn;
-
 /**
- * ÆÀ¼Û²Ù×÷µÄ¾ßÌåÊµÏÖ
+ * ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½Êµï¿½ï¿½
  * @author Alpha
- * 
+ *
  */
-public class EvaluationDaoImpl implements EvaluationDao {
+public class ManagerDaoImpl implements ManagerDao {
 
 	Connection conn = null;
 	PreparedStatement pre = null;
 	ResultSet rs = null;
 
 	@Override
-	public int addEvaluation(Evaluation evaluation) {
+	public int Manager(Manager manager) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "insert into evaluation(proid,userid,content,star,createtime) values(?,?,?,?,?)";
+		String sql = "insert into manager(name,email,password) values(?,?,?)";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			pre.setShort(1, evaluation.getProid());
-			pre.setShort(2, evaluation.getUserid());
-			pre.setString(3, evaluation.getContent());
-			pre.setShort(4, evaluation.getStar());
-			Date now = new Date();
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String date = df.format(now);
-			pre.setString(5, date);
+			pre.setString(1, manager.getName());
+			pre.setString(2, manager.getEmail());
+			pre.setString(3, manager.getPassword());
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -52,7 +43,7 @@ public class EvaluationDaoImpl implements EvaluationDao {
 		return i;
 	}
 
-	public int evaluationNum(String sql) {
+	public int managerNum(String sql) {
 		// TODO Auto-generated method stub
 		int i = 0;
 		try {
@@ -74,22 +65,15 @@ public class EvaluationDaoImpl implements EvaluationDao {
 	}
 
 	@Override
-	public int updateEvaluation(Evaluation evaluation) {
+	public int updateManager(Manager manager) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "update evaluation set proid=?,userid=?,content=?,star=?,createtime=? where id=?";
+		String sql = "update manager set password=? where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
-			pre.setShort(1, evaluation.getProid());
-			pre.setShort(2, evaluation.getUserid());
-			pre.setString(3, evaluation.getContent());
-			pre.setShort(4, evaluation.getStar());
-			Date now = new Date();
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String date = df.format(now);
-			pre.setString(5, date);
-			pre.setShort(6, evaluation.getId());
+			pre.setString(1, manager.getPassword());
+			pre.setShort(2, manager.getId());
 			i = pre.executeUpdate();
 
 		} catch (SQLException e) {
@@ -103,10 +87,10 @@ public class EvaluationDaoImpl implements EvaluationDao {
 	}
 
 	@Override
-	public int deleteEvaluation(Short id) {
+	public int deleteManager(Short id) {
 		// TODO Auto-generated method stub
 		int i = 0;
-		String sql = "delete from evaluation where id=?";
+		String sql = "delete from manager where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
@@ -124,23 +108,21 @@ public class EvaluationDaoImpl implements EvaluationDao {
 	}
 
 	@Override
-	public Collection<Evaluation> getEvaluation(String str) {
+	public Collection<Manager> getManager(String str) {
 		// TODO Auto-generated method stub
-		Collection<Evaluation> groups = new ArrayList<Evaluation>();
+		Collection<Manager> groups = new ArrayList<Manager>();
 		String sql = str;
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			rs = pre.executeQuery();
 			while (rs.next()) {
-				Evaluation eval = new Evaluation();
-				eval.setId(rs.getShort("evaluation.id"));
-				eval.setProid(rs.getShort("evaluation.proid"));
-				eval.setUserid(rs.getShort("evaluation.userid"));
-				eval.setContent(rs.getString("evaluation.content"));
-				eval.setStar(rs.getShort("evaluation.star"));
-				eval.setCreatetime(rs.getString("evaluation.createtime"));
-				groups.add(eval);
+				Manager mgr = new Manager();
+				mgr.setId(rs.getShort("manager.id"));
+				mgr.setName(rs.getString("manager.name"));
+				mgr.setEmail(rs.getString("manager.email"));
+				mgr.setPassword(rs.getString("manager.password"));
+				groups.add(mgr);
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -153,24 +135,22 @@ public class EvaluationDaoImpl implements EvaluationDao {
 	}
 
 	@Override
-	public Evaluation findEvaluation(Short id) {
+	public Manager findManager(Short id) {
 		// TODO Auto-generated method stub
-		Evaluation eval = new Evaluation();
-		String sql = "select * from evaluation where id=?";
+		Manager mgr = new Manager();
+		String sql = "select * from manager where id=?";
 		try {
 			conn = (Connection) Conn.getConnection();
 			pre = (PreparedStatement) conn.prepareStatement(sql);
 			pre.setShort(1, id);
 			rs = pre.executeQuery();
 			if (rs.next()) {
-				eval.setId(rs.getShort("evaluation.id"));
-				eval.setProid(rs.getShort("evaluation.proid"));
-				eval.setUserid(rs.getShort("evaluation.userid"));
-				eval.setContent(rs.getString("evaluation.content"));
-				eval.setStar(rs.getShort("evaluation.star"));
-				eval.setCreatetime(rs.getString("evaluation.createtime"));
+				mgr.setId(rs.getShort("manager.id"));
+				mgr.setName(rs.getString("manager.name"));
+				mgr.setEmail(rs.getString("manager.email"));
+				mgr.setPassword(rs.getString("manager.password"));
 			} else {
-				eval = null;
+				mgr = null;
 			}
 		} catch (SQLException e) {
 			System.out.print(e.getMessage());
@@ -179,7 +159,33 @@ public class EvaluationDaoImpl implements EvaluationDao {
 			Conn.release(pre);
 			Conn.release(conn);
 		}
-		return eval;
+		return mgr;
+	}
+
+	public Manager isManager(String str) {
+		// TODO Auto-generated method stub
+		Manager mgr = new Manager();
+		String sql = str;
+		try {
+			conn = (Connection) Conn.getConnection();
+			pre = (PreparedStatement) conn.prepareStatement(sql);
+			rs = pre.executeQuery();
+			if (rs.next()) {
+				mgr.setId(rs.getShort("manager.id"));
+				mgr.setName(rs.getString("manager.name"));
+				mgr.setEmail(rs.getString("manager.email"));
+				mgr.setPassword(rs.getString("manager.password"));
+			} else {
+				mgr = null;
+			}
+		} catch (SQLException e) {
+			System.out.print(e.getMessage());
+		} finally {
+			Conn.release(rs);
+			Conn.release(pre);
+			Conn.release(conn);
+		}
+		return mgr;
 	}
 
 }

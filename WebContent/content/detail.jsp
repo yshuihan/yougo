@@ -58,15 +58,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        <ul class="no-lsitview">
 	                        <%
 	                        	/* String loginid = session.getAttribute("loginid").toString();
-	                        	                    	String loginname = session.getAttribute("loginname").toString(); */
-	                        	                        String loginid="",loginname="";
-	                        	                        if(session.getAttribute("loginid")!=null){
-	                        	                        	loginid=session.getAttribute("loginid").toString();
-	                        	                        }
-	                        	                        if(session.getAttribute("loginname")!=null){
-	                        	                        	loginname=session.getAttribute("loginname").toString();
-	                        	                        }
-	                        	                        if(!loginid.equals("") && !loginname.equals("")){
+             	                    	String loginname = session.getAttribute("loginname").toString(); */
+            	                        String loginid="",loginname="";
+            	                        if(session.getAttribute("loginid")!=null){
+            	                        	loginid=session.getAttribute("loginid").toString();
+            	                        }
+            	                        if(session.getAttribute("loginname")!=null){
+            	                        	loginname=session.getAttribute("loginname").toString();
+            	                        }
+            	                        if(!loginid.equals("") && !loginname.equals("")){
 	                        %>
 	                         	<li class="float-left dropdown">
 	                                <a class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle" data-toggle="dropdown" href="javascript:;"><%=loginname%><b class="caret"></b></a>
@@ -109,14 +109,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    </div>
 	                </div>
 	            </div>
-                <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="evaluationDaoImpl" class="com.yougo.impl.EvaluationDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
-                <jsp:useBean id="orderdetailImpl" class="com.yougo.impl.OrderdetailImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+               <jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
+               <jsp:useBean id="proimagesServiceImpl" class="com.yougo.serviceImpl.ProImageServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="proTypeServiceImpl" class="com.yougo.serviceImpl.ProTypeServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="evaluationServiceImpl" class="com.yougo.serviceImpl.EvaluationServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
+                <jsp:useBean id="orderDetailServiceImpl" class="com.yougo.serviceImpl.OrderDetailServiceImpl" scope="request"></jsp:useBean>
 			    <%
 			    	String prid=request.getParameter("pid");
 			    	String proname="",styleid="";
@@ -130,17 +130,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    		response.sendRedirect("classify.jsp");
 			    	}else{
 				    	short pid=Short.parseShort(prid);
-				    	pd=productDaoImpl.findProduct(pid);
-				    	clsty=styleDaoImpl.findStyleByProid(pid);
+				    	pd=productServiceImpl.findProduct(pid);
+				    	clsty=styleServiceImpl.findStyleByProid(pid);
 						styiter=clsty.iterator(); 
-						cpis=proimagesDaoImpl.findProimagesByproid(pid);
+						cpis=proimagesServiceImpl.findProimagesByproid(pid);
 						pisiter=cpis.iterator();
 						short protypeid=pd.getTypeid();
-						ptp=protypeDaoImpl.findProtype(protypeid);
+						ptp=proTypeServiceImpl.findProtype(protypeid);
 						proname=pd.getName();
 						Long clnum=pd.getClicknum();
 						clnum++;
-						int cl=productDaoImpl.updateclicknum(clnum, Short.parseShort(prid));
+						int cl=productServiceImpl.updateclicknum(clnum, Short.parseShort(prid));
 						//out.print(cl);
 						
 			     %>
@@ -274,9 +274,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			                	String str,query;
 			                	str="select * from evaluation where proid=" + pid+ " order by id ";
 			                	query=str+limited;
-						    	Collection<Evaluation> ceva=evaluationDaoImpl.getEvaluation(query);
+						    	Collection<Evaluation> ceva=evaluationServiceImpl.getEvaluation(query);
 								Iterator<Evaluation> evaiter=ceva.iterator(); 
-								int allcount = evaluationDaoImpl.evaluationNum(str);
+								int allcount = evaluationServiceImpl.evaluationNum(str);
 								int allpage =1;
 								if(allcount%pagecount==0)
 								{
@@ -309,7 +309,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   													content=eva.getContent();
   													createtime=eva.getCreatetime();
   													star =eva.getStar();
-  													User usr=userDaoImpl.findUser(eva.getUserid());
+  													User usr=userServiceImpl.findUser(eva.getUserid());
   													evauser=usr.getName();
   													promess=proname+"  ";
   													
@@ -410,7 +410,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                         </div>
                         <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                            <a class="no-underline" href="javascript:;">@本网站版权由jude所有  2015-2018</a>
+                            <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
                         </div>
                     </div>
                 </div>

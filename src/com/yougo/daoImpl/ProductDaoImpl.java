@@ -1,4 +1,4 @@
-package com.yougo.impl;
+package com.yougo.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,6 @@ import com.yougo.dao.ProductDao;
 import com.yougo.db.Conn;
 
 /**
- * 商品操作接口的具体实现
  * 
  * @author Alpha
  * 
@@ -309,6 +308,7 @@ public class ProductDaoImpl implements ProductDao {
 			Conn.release(pre);
 			Conn.release(conn);
 		}
+		
 		return prd;
 	}
 

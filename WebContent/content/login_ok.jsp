@@ -24,12 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
     <%
     String email=request.getParameter("email");
     String password=request.getParameter("password");
 	String str = "select * from user where email='"+email+"' and password='"+password+"'";
-	User usr = userDaoImpl.isUser(str);
+	User usr = userServiceImpl.isUser(str);
 	if(usr!=null){
 	   	session.setAttribute("loginid",usr.getId());
 	   	session.setAttribute("loginname",usr.getName());

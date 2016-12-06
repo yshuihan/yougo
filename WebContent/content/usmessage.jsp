@@ -24,9 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
     <%
     	String email=request.getParameter("email");
+    System.out.println(email);
     	String name=request.getParameter("name");
     	String phone=request.getParameter("phone");
     	String QQ=request.getParameter("QQ");
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	short usrid= Short.parseShort(loginid);
         	User usrf = new User(usrid,name,email,phone,QQ,birth,adress);
         	String olUrl=request.getHeader("Referer");
-        	int i=userDaoImpl.updateUser(usrf);
+        	int i=userServiceImpl.updateUser(usrf);
 	   		if(i==0){
 	   			response.sendRedirect(olUrl);
 	   			//response.sendRedirect(olUrl+"?result=unseccess");

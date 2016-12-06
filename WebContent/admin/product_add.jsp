@@ -25,8 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
-  	<jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+  	<jsp:useBean id="protypeServiceImpl" class="com.yougo.serviceImpl.ProTypeServiceImpl" scope="request"></jsp:useBean>
     <%
     String indeximage="";
     String filept="",message="",result="f";
@@ -64,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        <div class="form-group mt-md pt-md">
 	        <%
 				String ptpstr="select * from protype"+" order by id";
-				Collection<Protype> cprtp=protypeDaoImpl.getProtype(ptpstr);
+				Collection<Protype> cprtp=protypeServiceImpl.getProtype(ptpstr);
 				Iterator<Protype> prtpiter=cprtp.iterator(); 
 			%>
 	            <label for="proType" class="col-sm-3 control-label">商品类型</label>

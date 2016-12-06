@@ -1,4 +1,4 @@
-package com.yougo.impl;
+package com.yougo.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import com.yougo.dao.StyleDao;
 import com.yougo.db.Conn;
 
 /**
- * 款式操作接口的具体实现
+ * 锟斤拷式锟斤拷锟斤拷锟接口的撅拷锟斤拷实锟斤拷
  * 
  * @author Alpha
  * 

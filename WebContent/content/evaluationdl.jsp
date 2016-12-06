@@ -25,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="evaluationDaoImpl" class="com.yougo.impl.EvaluationDaoImpl" scope="request"></jsp:useBean>
-    <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="evaluationServiceImpl" class="com.yougo.serviceImpl.EvaluationServiceImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
     <%
    	String loginid="",loginname="";
     if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     int i=0;
     Evaluation eva=new Evaluation(Short.parseShort(pid),Short.parseShort(loginid),content,Short.parseShort(star),datetime);
 	while(i==0){
-		i=evaluationDaoImpl.addEvaluation(eva);
+		i=evaluationServiceImpl.addEvaluation(eva);
 	}
 	response.sendRedirect("detail.jsp?pid="+pid);
     %>

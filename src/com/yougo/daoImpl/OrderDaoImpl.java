@@ -1,4 +1,4 @@
-package com.yougo.impl;
+package com.yougo.daoImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +14,7 @@ import com.yougo.dao.OrderDao;
 import com.yougo.db.Conn;
 
 /**
- * ¶©µ¥Êı¾İ²Ù×÷µÄ¾ßÌåÊµÏÖ
+ * è®¢å•å®ä½“ç±»
  * 
  * @author Alpha
  * 
@@ -26,7 +26,7 @@ public class OrderDaoImpl implements OrderDao {
 	ResultSet rs = null;
 
 	@Override
-	public int Order(com.yougo.bean.Order order) {
+	public int Order(Order order) {
 		// TODO Auto-generated method stub
 		int i = 0;
 		String sql = "insert into "
@@ -38,7 +38,7 @@ public class OrderDaoImpl implements OrderDao {
 			pre.setString(1, order.getOrdernumber());
 			pre.setFloat(2, order.getPrice());
 			pre.setString(3, order.getContext());
-			pre.setString(4, "Î´·¢»õ");
+			pre.setString(4, "æœªå‘è´§");
 			pre.setShort(5, order.getUserid());
 			Date now = new Date();
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -56,8 +56,8 @@ public class OrderDaoImpl implements OrderDao {
 		return i;
 	}
 
+	@Override
 	public int orderNum(String sql) {
-		// TODO Auto-generated method stub
 		int i = 0;
 		try {
 			conn = (Connection) Conn.getConnection();
@@ -78,7 +78,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public int updateOrder(com.yougo.bean.Order order) {
+	public int updateOrder(Order order) {
 		// TODO Auto-generated method stub
 		int i = 0;
 		String sql = "update orders set ordernumber=?,price=?,context=?,state=?,userid=?,createtime=? where id=?";
@@ -108,8 +108,8 @@ public class OrderDaoImpl implements OrderDao {
 		return i;
 	}
 
-	public int updateOrderState(com.yougo.bean.Order order) {
-		// TODO Auto-generated method stub
+	@Override
+	public int updateOrderState(Order order) {
 		int i = 0;
 		String sql = "update orders set state=? where id=?";
 		try {
@@ -152,7 +152,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public Collection<com.yougo.bean.Order> getOrder(String str) {
+	public Collection<Order> getOrder(String str) {
 		// TODO Auto-generated method stub
 		Collection<Order> groups = new ArrayList<Order>();
 		String sql = str;
@@ -182,7 +182,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public com.yougo.bean.Order findOrder(Short id) {
+	public Order findOrder(Short id) {
 		// TODO Auto-generated method stub
 		Order ord = new Order();
 		String sql = "select * from orders where id=?";
@@ -212,8 +212,8 @@ public class OrderDaoImpl implements OrderDao {
 		return ord;
 	}
 
-	public com.yougo.bean.Order findoneOrder(String ordernumber) {
-		// TODO Auto-generated method stub
+	@Override
+	public Order findoneOrder(String ordernumber) {
 		Order ord = new Order();
 		String sql = "select * from orders where ordernumber=?";
 		try {

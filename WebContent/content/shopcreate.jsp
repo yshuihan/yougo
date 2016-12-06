@@ -27,10 +27,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="shopcartDaoImpl" class="com.yougo.impl.ShopcartDaoImpl" scope="request"></jsp:useBean>
-    <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
-    <jsp:useBean id="orderdetailImpl" class="com.yougo.impl.OrderdetailImpl" scope="request"></jsp:useBean>
-    <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="shopCartServiceImpl" class="com.yougo.serviceImpl.ShopCartServiceImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="orderDetailServiceImpl" class="com.yougo.serviceImpl.OrderDetailServiceImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
     <%
     String loginid="",loginname="";
     if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(request.getParameter("empty")!=null){
 		int l=0;
 		while(l==0){
-			l=shopcartDaoImpl.deleteAllShopcart(Short.parseShort(loginid));
+			l=shopCartServiceImpl.deleteAllShopcart(Short.parseShort(loginid));
 		}
 	}
 	if(request.getParameter("delete")!=null){
@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		int l=0;
 			for(int a=0;a<spck.length;a++){
 				while(l==0){
-	   				l=shopcartDaoImpl.deleteShopcart(Short.parseShort(spck[a]));
+	   				l=shopCartServiceImpl.deleteShopcart(Short.parseShort(spck[a]));
 	   			}
 	   			l=0;
 			}
@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(spck!=null && spck.length>0){
 			float allprice=0;
 			for(int a=0;a<spck.length;a++){
-				Shopcart spt=shopcartDaoImpl.findShopcart(Short.parseShort(spck[a]));
+				Shopcart spt=shopCartServiceImpl.findShopcart(Short.parseShort(spck[a]));
 				allprice+=spt.getPrice()*spt.getNum();
 			}
 			String datetime="";
@@ -80,27 +80,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    datetime=sdf.format(dtnow);
 		    short usrid= Short.parseShort(loginid);
 		    Order odr = new Order(odrCOde , allprice,content ,fhstate ,usrid ,datetime);
-		    int i=orderDaoImpl.Order(odr);
+		    int i=orderServiceImpl.Order(odr);
 		    int k=0,l=0;
 		    if(i==1){
-		   		Order odrd =orderDaoImpl.findoneOrder(odrCOde);
+		   		Order odrd =orderServiceImpl.findoneOrder(odrCOde);
 		   		for(int b=0;b<spck.length;b++){
-		   			Shopcart spt=shopcartDaoImpl.findShopcart(Short.parseShort(spck[b]));
+		   			Shopcart spt=shopCartServiceImpl.findShopcart(Short.parseShort(spck[b]));
 					Orderdetail odrdtl=new Orderdetail(odrd.getId(),spt.getProid(),spt.getNum(),spt.getPrice(),spt.getStyleid());
-					int j=orderdetailImpl.addOrderdetail(odrdtl);
+					int j=orderDetailServiceImpl.addOrderdetail(odrdtl);
 					if(j==0){
 			   			while(k==0){
-			   				k=orderDaoImpl.deleteOrder(odrd.getId());
+			   				k=orderServiceImpl.deleteOrder(odrd.getId());
 			   			}
 			   		}else{
 			   			while(l==0){
-			   				l=shopcartDaoImpl.deleteShopcart(Short.parseShort(spck[b]));
+			   				l=shopCartServiceImpl.deleteShopcart(Short.parseShort(spck[b]));
 			   			}
 			   			l=0;
-			   			Product slpd =productDaoImpl.findProduct(spt.getProid());
+			   			Product slpd =productServiceImpl.findProduct(spt.getProid());
 			   			Long salenum=slpd.getSalenum();
 			   			salenum++;
-			   			int sl=productDaoImpl.updatesalenum(salenum, spt.getProid());
+			   			int sl=productServiceImpl.updatesalenum(salenum, spt.getProid());
 			   		}
 				}	
 		   	}

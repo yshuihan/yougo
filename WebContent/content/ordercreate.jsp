@@ -26,9 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
-	<jsp:useBean id="orderdetailImpl" class="com.yougo.impl.OrderdetailImpl" scope="request"></jsp:useBean>
-	<jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
+   <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
+	<jsp:useBean id="orderDetailServiceImpl" class="com.yougo.serviceImpl.OrderDetailServiceImpl" scope="request"></jsp:useBean>
+	<jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
   	<%
   	String loginid="",loginname="";
     if(session.getAttribute("loginid")!=null && session.getAttribute("loginname")!=null){
@@ -49,10 +49,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     //fhstate=new String(fhstate.getBytes("utf-8"),"utf-8"); 
     request.setCharacterEncoding("utf-8");
     //out.print(fhstate);
-    short usrid= Short.parseShort(loginid);
-    short stid= Short.parseShort(styleid);
-    short pid= Short.parseShort(proid);
-    short adid= Short.parseShort(addrid);
+    System.out.println("addrid:"+addrid+",ordercode:"+ordercode+",proid:"+proid+",pronum:"+pronum+",price:"+price+",styleid:"+styleid+",cntent:"+content);
+    short usrid= Short.valueOf(loginid);
+    short stid= Short.valueOf(styleid);
+    short pid= Short.valueOf(proid);
+    short adid= Short.valueOf(addrid);
     //out.print(addrid+"  "+ordercode+"  "+proid+"  "+pronum+"  "+price+"  "+styleid+"  "+content);
     Order odr,odrd;
     Orderdetail odrdtl;
@@ -65,25 +66,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     float allprice=Float.parseFloat(price)*Short.parseShort(pronum);
     odr = new Order(ordercode , allprice,content ,fhstate ,usrid ,datetime);
     //out.print(odr.getContext());
-    i=orderDaoImpl.Order(odr);
+    i=orderServiceImpl.Order(odr);
     if(i==0){
     	//out.print("aa");
     	response.sendRedirect("detail.jsp?pid="+pid);
    	}else{
-   		odrd =orderDaoImpl.findoneOrder(ordercode);
+   		odrd =orderServiceImpl.findoneOrder(ordercode);
    		odrdtl=new Orderdetail(odrd.getId(),pid,Short.parseShort(pronum),Float.parseFloat(price),stid);
-   		j=orderdetailImpl.addOrderdetail(odrdtl);
+   		j=orderDetailServiceImpl.addOrderdetail(odrdtl);
    		if(j==0){
    			while(k==0){
-   				k=orderDaoImpl.deleteOrder(odrd.getId());
+   				k=orderServiceImpl.deleteOrder(odrd.getId());
    			}
    			//out.print("bb");
    			response.sendRedirect(olUrl);
    		}else{
-   			Product slpd =productDaoImpl.findProduct(pid);
+   			Product slpd =productServiceImpl.findProduct(pid);
    			Long salenum=slpd.getSalenum();
    			salenum++;
-   			int sl=productDaoImpl.updatesalenum(salenum, pid);
+   			int sl=productServiceImpl.updatesalenum(salenum, pid);
    			//out.print("cc");
    			response.sendRedirect("order.jsp");
    		}

@@ -26,9 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="orderDaoImpl" class="com.yougo.impl.OrderDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="orderdetailImpl" class="com.yougo.impl.OrderdetailImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="orderServiceImpl" class="com.yougo.serviceImpl.OrderServiceImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="orderdetailServiceImpl" class="com.yougo.serviceImpl.OrderDetailServiceImpl" scope="request"></jsp:useBean>
     <div class="manage_list col-lg-10 col-lg-offset-1">
     <%
     int pagecount = 5;
@@ -44,9 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	String limited="limit " + start + "," + pagecount;
    	String str="select * from orders order by id "+limited;
    	String query="select * from orders order by id ";
-   	Collection<Order> cord=orderDaoImpl.getOrder(str);
+   	Collection<Order> cord=orderServiceImpl.getOrder(str);
    	Iterator<Order> orditer=cord.iterator(); 
-   	int allcount = orderDaoImpl.orderNum(query);
+   	int allcount = orderServiceImpl.orderNum(query);
    	int allpage =1;
 	if(allcount%pagecount==0)
 	{
@@ -177,9 +177,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   	String seclimited="limit " + secstart + "," + secpagecount;
 		   	String secstr="select * from orderdetail where orderid=" + ordid+" order by id "+seclimited;
 		   	String secquery="select * from orderdetail where orderid=" + ordid+" order by id";
-		   	Collection<Orderdetail> corddt=orderdetailImpl.getOrderdetail(secstr);
+		   	Collection<Orderdetail> corddt=orderdetailServiceImpl.getOrderdetail(secstr);
 		   	Iterator<Orderdetail> orddtiter=corddt.iterator(); 
-		   	int secallcount = orderdetailImpl.orderdetailNum(secquery);
+		   	int secallcount = orderdetailServiceImpl.orderdetailNum(secquery);
 		   	int secallpage =1;
 			if(secallcount%secpagecount==0)
 			{
@@ -209,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <td class="line-td"><%=ordt.getId() %></td>
 	                    <td class="line-td">
 						<%
-	                    Product onepd=productDaoImpl.findProduct(ordt.getProid());
+	                    Product onepd=productServiceImpl.findProduct(ordt.getProid());
 	                    out.print(onepd.getName());
 	                     %>
 						</td>

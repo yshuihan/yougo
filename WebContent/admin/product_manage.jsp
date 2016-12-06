@@ -27,10 +27,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="protypeDaoImpl" class="com.yougo.impl.ProtypeDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="proTypeServiceImpl" class="com.yougo.serviceImpl.ProTypeServiceImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="proImageServiceImpl" class="com.yougo.serviceImpl.ProImageServiceImpl" scope="request"></jsp:useBean>
   <%
     	String lpt="";
     	String pttpOption="";
@@ -57,9 +57,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   	String limited="limit " + start + "," + pagecount;
 	   	String pdstr="select * from product "+lpt+" order by id "+limited;
 	   	String pdquery="select * from product "+lpt+" order by id ";
-	   	Collection<Product> cpd=productDaoImpl.getProduct(pdstr);
+	   	Collection<Product> cpd=productServiceImpl.getProduct(pdstr);
 	   	Iterator<Product> pditer=cpd.iterator(); 
-	   	int allcount = productDaoImpl.productNum(pdquery);
+	   	int allcount = productServiceImpl.productNum(pdquery);
 	   	int allpage =1;
 		if(allcount%pagecount==0)
 		{
@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		商品类型<span class="caret ml-sm"></span></button>
         	<%
 				String ptpstr="select * from protype"+" order by id";
-				Collection<Protype> cprtp=protypeDaoImpl.getProtype(ptpstr);
+				Collection<Protype> cprtp=proTypeServiceImpl.getProtype(ptpstr);
 				Iterator<Protype> prtpiter=cprtp.iterator(); 
 			%>
 	        <ul class="dropdown-menu" role="menu">
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <td class="line-td">
 	                    <%
 	                    if(pd.getTypeid()!=null){
-		                    Protype opttp=protypeDaoImpl.findProtype(pd.getTypeid());
+		                    Protype opttp=proTypeServiceImpl.findProtype(pd.getTypeid());
 		                    out.print(opttp.getType());
 	                    }
 	                    %>
@@ -231,11 +231,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			String pid=request.getParameter("pid");
 	    	if(pid!=null&&!pid.equals("")){
 		   		String stystr="select * from style where proid="+pid +" order by id";
-				Collection<Style> csty=styleDaoImpl.getStyle(stystr);
+				Collection<Style> csty=styleServiceImpl.getStyle(stystr);
 				Iterator<Style> styiter=csty.iterator();
-				if(csty.size()>0){
+				
 		%>
 		<h3 class="text-center mt-md pb-md">商品编号<%=pid %>的款式<button type="button" class="btn btn-mydark ml-md" onclick="window.location='admin/admin.jsp?list=2&btntp=styleadd&protypeid=<%=protypeid %>&pid=<%=pid %>'">添加新款式</button></h3>
+	    <%
+	   			if(csty.size()>0){
+	    %>
 	    <div id="proStyle" class="table-responsive">
 	        <table class="table table-hover">
 	            <caption></caption>
@@ -278,12 +281,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			String pid=request.getParameter("pid");
 	    	if(pid!=null&&!pid.equals("")){
 		   		String pogsstr="select * from proimages where proid="+pid +" order by id";
-				Collection<Proimages> cprig=proimagesDaoImpl.getProimages(pogsstr);
+				Collection<Proimages> cprig=proImageServiceImpl.getProimages(pogsstr);
 				Iterator<Proimages> prigiter=cprig.iterator();
-				if(cprig.size()>0){
 		%>
 		<h3 class="text-center pb-md mt-md">商品编号<%=pid %>的图片组<button type="button" class="btn btn-mydark ml-md" onclick="window.location='admin/admin.jsp?list=2&btntp=imgadd&protypeid=<%=protypeid %>&pid=<%=pid %>'">添加新图片</button></h3>
-	    <div id="userAddress" class="table-responsive">
+		<%
+				if(cprig.size()>0){
+		%>
+		<div id="userAddress" class="table-responsive">
 	        <table class="table table-hover">
 	            <caption></caption>
 	            <thead>
@@ -320,7 +325,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(btntp!=null && btntp.equals("pddl")){
 			String pid=request.getParameter("pid");
 	    	if(pid!=null&&!pid.equals("")){
-		   		Product opd=productDaoImpl.findProduct(Short.parseShort(pid));
+		   		Product opd=productServiceImpl.findProduct(Short.parseShort(pid));
 		%>
 	    <div id="proconedit" class=" col-lg-12 p-none text-center mt-md mb-md">
 	        <div class="pt-md pb-md bg-mydark text-white">
@@ -340,7 +345,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <div class="col-sm-9">
 	                    <%
 	                    String newptpstr="select * from protype"+" order by id";
-						Collection<Protype> newcprtp=protypeDaoImpl.getProtype(newptpstr);
+						Collection<Protype> newcprtp=proTypeServiceImpl.getProtype(newptpstr);
 						Iterator<Protype> newprtpiter=newcprtp.iterator(); 
 	                    %>
 	                        <select id="theproType" name="protypeid" class="form-control input-mydark">
@@ -421,7 +426,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(btntp!=null && btntp.equals("pdimgdl")){
 			String pid=request.getParameter("pid");
 	    	if(pid!=null&&!pid.equals("")){
-		   		Product opd=productDaoImpl.findProduct(Short.parseShort(pid));
+		   		Product opd=productServiceImpl.findProduct(Short.parseShort(pid));
 		%>
 		<div  class=" col-lg-12 p-none text-center mt-md mb-md">
 	        <div class="pt-md pb-md bg-mydark text-white mb-lg">
@@ -477,7 +482,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		if(btntp!=null && btntp.equals("styleedit")){
 			String styid=request.getParameter("styid");
 	    	if(styid!=null&&!styid.equals("")){
-	    		Style sty=styleDaoImpl.findStyle(Short.parseShort(styid));
+	    		Style sty=styleServiceImpl.findStyle(Short.parseShort(styid));
 		%>
 	    <div class="col-lg-12 p-none text-center mt-md mb-md">
 	        <div class="pt-md pb-md bg-mydark text-white">

@@ -25,8 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
-  	<jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl" scope="request"></jsp:useBean>
+  	<jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
+  	<jsp:useBean id="adressServiceImpl" class="com.yougo.serviceImpl.AddressServiceImpl" scope="request"></jsp:useBean>
     <%
     	int pagecount = 5;
         String pagenum=request.getParameter("page");
@@ -41,9 +41,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        	String limited="limit " + start + "," + pagecount;
        	String str="select * from user order by id "+limited;
        	String usrquery="select * from user order by id ";
-       	Collection<User> cusr=userDaoImpl.getUser(str);
+       	Collection<User> cusr=userServiceImpl.getUser(str);
        	Iterator<User> usriter=cusr.iterator(); 
-       	int allcount = userDaoImpl.userNum(usrquery);
+       	int allcount = userServiceImpl.userNum(usrquery);
        	int allpage =1;
     	if(allcount%pagecount==0)
     	{
@@ -150,7 +150,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	String adusrid=request.getParameter("adusrid");
 	    	    if(adusrid!=null){
 	    		    String query="select * from adress where userid=" + adusrid;
-	    		   	Collection<Address> cadr=adressDaoImpl.getAdresss(query);
+	    		   	Collection<Address> cadr=adressServiceImpl.getAdresss(query);
 	    		   	Iterator<Address> adriter=cadr.iterator(); 
 	    		   	if(cadr.size()!=0){
 	    %>

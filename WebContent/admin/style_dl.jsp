@@ -24,12 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="styleDaoImpl" class="com.yougo.impl.StyleDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="styleServiceImpl" class="com.yougo.serviceImpl.StyleServiceImpl" scope="request"></jsp:useBean>
     <%
   	String sid=request.getParameter("sid");
   	//out.print(pid);
   	int j=0;
-  	j=styleDaoImpl.deleteStyle(Short.parseShort(sid));
+  	j=styleServiceImpl.deleteStyle(Short.parseShort(sid));
   	String olUrl=request.getHeader("Referer");
   	//out.print(olUrl);
   	response.sendRedirect(olUrl);

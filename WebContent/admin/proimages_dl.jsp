@@ -24,12 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <jsp:useBean id="proimagesDaoImpl" class="com.yougo.impl.ProimagesDaoImpl" scope="request"></jsp:useBean>
+    <jsp:useBean id="proImageServiceImpl" class="com.yougo.serviceImpl.ProImageServiceImpl" scope="request"></jsp:useBean>
   	<%
   	String piid=request.getParameter("piid");
   	//out.print(pid);
   	int k=0;
-  	k=proimagesDaoImpl.deleteProimages(Short.parseShort(piid));
+  	k=proImageServiceImpl.deleteProimages(Short.parseShort(piid));
   	String olUrl=request.getHeader("Referer");
   	response.sendRedirect(olUrl);
   	%>

@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
   <%
     String loginid="",loginname="",filept="",message="",result="f";
     if(session.getAttribute("loginid")!=null){
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     //out.println(result);
     if(result.equals("t")){
     	User usr=new User(filept ,usrid);
-		int i =userDaoImpl.updateUserHeadImage(usr);
+		int i =userServiceImpl.updateUserHeadImage(usr);
 		//out.println(i);
 		if(i==0){
 	  	  session.setAttribute("message", "文件上传失败！");

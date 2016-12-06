@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="adressDaoImpl" class="com.yougo.impl.AddressDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="adressServiceImpl" class="com.yougo.serviceImpl.AddressServiceImpl" scope="request"></jsp:useBean>
     <%
     	String addtp=request.getParameter("addtp");
         String adid=request.getParameter("adid");
@@ -47,12 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         int i=0;
         if(addtp.equals("add")){
         	adr = new Address(usrid ,name ,phone ,address ,code);
-        	i=adressDaoImpl.addAdress(adr);
+        	i=adressServiceImpl.addAdress(adr);
         }
         if(addtp.equals("edit")){
         	short addid= Short.parseShort(adid);
        		adr = new Address(addid ,usrid ,name ,phone ,address ,code);
-        	i=adressDaoImpl.updateAdress(adr);
+        	i=adressServiceImpl.updateAdress(adr);
         }	
         if(i==0){
       	  response.sendRedirect(olUrl+"&adresult=unseccess");

@@ -26,9 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <jsp:useBean id="productDaoImpl" class="com.yougo.impl.ProductDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="evaluationDaoImpl" class="com.yougo.impl.EvaluationDaoImpl" scope="request"></jsp:useBean>
-  <jsp:useBean id="userDaoImpl" class="com.yougo.impl.UserDaoImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="evaluationServiceImpl" class="com.yougo.serviceImpl.EvaluationServiceImpl" scope="request"></jsp:useBean>
+  <jsp:useBean id="userServiceImpl" class="com.yougo.serviceImpl.UserServiceImpl" scope="request"></jsp:useBean>
     <div class="manage_list col-lg-10 col-lg-offset-1">
 	    <div class="table-responsive">
 	        <table class="table table-hover">
@@ -55,9 +55,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   	String limited="limit " + start + "," + pagecount;
 			   	String str="select * from product order by id "+limited;
 			   	String query="select * from product order by id ";
-			   	Collection<Product> cpd=productDaoImpl.getProduct(str);
+			   	Collection<Product> cpd=productServiceImpl.getProduct(str);
 			   	Iterator<Product> pditer=cpd.iterator(); 
-			   	int allcount = productDaoImpl.productNum(query);
+			   	int allcount = productServiceImpl.productNum(query);
 			   	int allpage =1;
 				if(allcount%pagecount==0)
 				{
@@ -150,9 +150,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   	String seclimited="limit " + secstart + "," + secpagecount;
 		   	String secstr="select * from evaluation where proid=" + pdid+" order by id "+seclimited;
 		   	String secquery="select * from evaluation where proid=" + pdid+" order by id";
-		   	Collection<Evaluation> ceva=evaluationDaoImpl.getEvaluation(secstr);
+		   	Collection<Evaluation> ceva=evaluationServiceImpl.getEvaluation(secstr);
 		   	Iterator<Evaluation> evaiter=ceva.iterator(); 
-		   	int secallcount = evaluationDaoImpl.evaluationNum(secquery);
+		   	int secallcount = evaluationServiceImpl.evaluationNum(secquery);
 		   	int secallpage =1;
 			if(secallcount%secpagecount==0)
 			{
@@ -184,13 +184,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <td class="line-td"><%=eva.getId() %></td>
 	                    <td class="line-td">
 	                    <%
-	                    User oneusr=userDaoImpl.findUser(eva.getUserid());
+	                    User oneusr=userServiceImpl.findUser(eva.getUserid());
 	                    out.print(oneusr.getName());
 	                     %>
 	                    </td>
 	                    <td class="line-td">
 	                    <%
-	                    Product onepd=productDaoImpl.findProduct(eva.getProid());
+	                    Product onepd=productServiceImpl.findProduct(eva.getProid());
 	                    out.print(onepd.getName());
 	                     %>
 	                    </td>
