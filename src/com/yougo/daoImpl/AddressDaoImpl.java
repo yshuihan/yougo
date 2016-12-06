@@ -11,7 +11,7 @@ import com.yougo.bean.Address;
 import com.yougo.dao.AdressDao;
 import com.yougo.db.Conn;
 /**
- * �ջ��ַ�����ľ���ʵ��
+ * 
  * @author Alpha
  *
  */

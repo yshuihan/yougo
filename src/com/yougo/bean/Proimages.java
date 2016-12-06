@@ -1,37 +1,40 @@
 package com.yougo.bean;
 
 /**
- * Ԥ��ͼƬʵ��
+ * 产品图片（大）
  */
 
 public class Proimages implements java.io.Serializable {
 
-	// Fields
-
+	/**
+	 * 图片 id
+	 */
 	private Short id;
+	/**
+	 * 图片描述
+	 */
 	private String imagealt;
+	/**
+	 * 图片路径地址
+	 */
 	private String imagesrc;
+	/**
+	 * 对应的产品 id
+	 */
 	private Short proid;
 
-	// Constructors
-
-	/** default constructor */
 	public Proimages() {
 	}
 
-	/** minimal constructor */
 	public Proimages(Short proid) {
 		this.proid = proid;
 	}
 
-	/** full constructor */
 	public Proimages(String imagealt, String imagesrc, Short proid) {
 		this.imagealt = imagealt;
 		this.imagesrc = imagesrc;
 		this.proid = proid;
 	}
-
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

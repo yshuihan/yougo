@@ -5,31 +5,80 @@ import java.util.Collection;
 import com.yougo.bean.User;
 
 /**
- * 用户操作接口
+ * 鐢ㄦ埛瀹炰綋
  * 
  * @author Alpha
  * 
  */
 public interface UserDao {
+	/**
+	 * 娣诲姞鐢ㄦ埛
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public int addUser(User user);
 
+	/**
+	 * 
+	 * @param sql
+	 * @return
+	 */
 	public int userNum(String sql);
 
-	//
+	/**
+	 * 鏇存柊鐢ㄦ埛
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public int updateUser(User user);
 
+	/**
+	 * 鏇存柊瀵嗙爜
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public int updateUserPassword(User user);
 
+	/**
+	 * 鏇存柊鐢ㄦ埛澶村儚
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public int updateUserHeadImage(User user);
 
-	//
+	/**
+	 * 鍒犻櫎鐢ㄦ埛
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public int deleteUser(Short id);
 
-	//
+	/**
+	 * 鏌ヨ鐢ㄦ埛
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public Collection<User> getUser(String str);
 
-	//
+	/**
+	 * 鏌ヨ鐢ㄦ埛
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public User findUser(Short id);
 
+	/**
+	 * 鏄娉ㄥ唽鐢ㄦ埛
+	 * 
+	 * @param str
+	 * @return
+	 */
 	public User isUser(String str);
 }

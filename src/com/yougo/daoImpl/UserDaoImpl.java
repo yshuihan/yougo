@@ -14,7 +14,7 @@ import com.yougo.dao.UserDao;
 import com.yougo.db.Conn;
 
 /**
- * �Ñ������ӿڵľ���ʵ��
+ * 
  * 
  * @author Alpha
  * 

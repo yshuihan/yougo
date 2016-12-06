@@ -10,7 +10,7 @@ import com.yougo.bean.Manager;
 import com.yougo.dao.ManagerDao;
 import com.yougo.db.Conn;
 /**
- * ����Ա������ľ���ʵ��
+ * 
  * @author Alpha
  *
  */

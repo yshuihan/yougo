@@ -50,15 +50,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul class="no-lsitview">
 							<%
 								/* String loginid = session.getAttribute("loginid").toString();
-        	                    	String loginname = session.getAttribute("loginname").toString(); */
-        	                        String loginid="",loginname="";
-        	                        if(session.getAttribute("loginid")!=null){
-        	                        	loginid=session.getAttribute("loginid").toString();
-        	                        }
-        	                        if(session.getAttribute("loginname")!=null){
-        	                        	loginname=session.getAttribute("loginname").toString();
-        	                        }
-        	                        if(!loginid.equals("") && !loginname.equals("")){
+							        	                    	String loginname = session.getAttribute("loginname").toString(); */
+							        	                        String loginid="",loginname="";
+							        	                        if(session.getAttribute("loginid")!=null){
+							        	                        	loginid=session.getAttribute("loginid").toString();
+							        	                        }
+							        	                        if(session.getAttribute("loginname")!=null){
+							        	                        	loginname=session.getAttribute("loginname").toString();
+							        	                        }
+							        	                        if(!loginid.equals("") && !loginname.equals("")){
 							%>
 							<li class="float-left dropdown"><a
 								class="no-underline pt-lg pb-md pl-md pr-md nav-hover dropdown-toggle"
@@ -108,46 +108,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 			</div>
-			<jsp:useBean id="productServiceImpl" class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
+			<jsp:useBean id="productServiceImpl"
+				class="com.yougo.serviceImpl.ProductServiceImpl" scope="request"></jsp:useBean>
 			<%
 				int pagecount = 12;//每页显示的数量
-              	String typeid=request.getParameter("typeid");//显示的产品类型
-              	String pagenum=request.getParameter("page");//当前是第几页
-              	if(pagenum==null){
-              		pagenum="1";
-              	}
-              	int start=(Integer.parseInt(pagenum)-1)*pagecount;//查询开始的索引
-              	String limited="limit " + start + "," + pagecount;
-              	String str,query;
-              	//拼接分页 sql 语句 
-              	if(typeid==null){
-              		str="select * from product order by id ";
-              		query=str+limited;
-              	}else{
-              		str="select * from product where typeid=" + typeid+ " order by id ";
-              		query=str+limited;
-              	}
-              	
-		    	Collection<Product> cpdt=productServiceImpl.getProduct(query);
-				Iterator<Product> cpditer=cpdt.iterator(); 
-				int allcount = productServiceImpl.productNum(str);//拿到总记录数量
-				int allpage =1;
-				//拿到总页数
-				if(allcount%pagecount==0)
-				{
-					allpage = allcount/pagecount;
-				}else{
-					allpage = allcount/pagecount+1;
-				}
+			              	String typeid=request.getParameter("typeid");//显示的产品类型
+			              	String pagenum=request.getParameter("page");//当前是第几页
+			              	if(pagenum==null){
+			              		pagenum="1";
+			              	}
+			              	int start=(Integer.parseInt(pagenum)-1)*pagecount;//查询开始的索引
+			              	String limited="limit " + start + "," + pagecount;
+			              	String str,query;
+			              	//拼接分页 sql 语句 
+			              	if(typeid==null){
+			              		str="select * from product order by id ";
+			              		query=str+limited;
+			              	}else{
+			              		str="select * from product where typeid=" + typeid+ " order by id ";
+			              		query=str+limited;
+			              	}
+			              	
+					    	Collection<Product> cpdt=productServiceImpl.getProduct(query);
+					Iterator<Product> cpditer=cpdt.iterator(); 
+					int allcount = productServiceImpl.productNum(str);//拿到总记录数量
+					int allpage =1;
+					//拿到总页数
+					if(allcount%pagecount==0)
+					{
+						allpage = allcount/pagecount;
+					}else{
+						allpage = allcount/pagecount+1;
+					}
 			%>
 			<div id="mainContent"
 				class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-0 col-sm-12 col-xs-offset-0 col-xs-12 p-none pt-xlg mt-lg">
 				<div id="subNavigation"
 					class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center text-white border-bottom-mydark mb-md">
 					<a class="no-underline text-white"
-						href="content/classify.jsp?page=1"><h2
-							class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark m-none pt-xlg pb-xs">APPLE</h2></a>
-					<a
+						href="content/classify.jsp?page=1">
+						<h2
+							class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark m-none pt-xlg pb-xs">APPLE</h2>
+					</a> <a
 						class="no-underline col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark text-lg pt-sm pb-sm mt-lg"
 						href="content/classify.jsp?typeid=1&page=1">iPhone</a> <a
 						class="no-underline col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-mydark text-lg pt-sm pb-sm mt-lg"
@@ -204,7 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						class="col-lg-12 col-md-12 col-sm-12 col-xs-12 p-none mt-md mb-md">
 						<%
 							while(cpditer.hasNext()){ 
-  								Product pd=(Product)cpditer.next();
+						  								Product pd=(Product)cpditer.next();
 						%>
 						<div
 							class="col-lg-3 col-md-3 col-sm-4 col-xs-6 theproduct p-none pl-sm pr-sm mt-md">
@@ -254,8 +256,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li><a href="javascript:;">&laquo;</a></li>
 								<%
 									}else{ //否则设置上一页的 url
-	                                	int k =pageNow;
-	                                	k--;
+									                                	int k =pageNow;
+									                                	k--;
 								%>
 								<li><a href="<%=pageUrl+"page="+k%>">&laquo;</a></li>
 								<%
@@ -263,16 +265,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								%>
 								<%
 									for(int i=1;i<=licount;i++){//具体每一页的分页按钮信息
-                                		if(pageNow==i){//当前页
+								                                		if(pageNow==i){//当前页
 								%>
 								<li class="active"><a href="javascript:;"><%=i%></a></li>
 								<%
-										}else{//其他页
+									}else{//其他页
 								%>
 								<li><a href="<%=pageUrl+"page="+i%>"><%=i%></a></li>
 								<%
-										}
-                                	}	
+									}
+								                                	}
 								%>
 								<%
 									if(pageNow>=allpage){//下一页的 url 设置
@@ -280,8 +282,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<li><a href="javascript:;">&raquo;</a></li>
 								<%
 									}else{ 
-	                                	int k =pageNow;
-	                                	k++;
+									                                	int k =pageNow;
+									                                	k++;
 								%>
 								<li><a href="<%=pageUrl+"page="+k%>">&raquo;</a></li>
 								<%

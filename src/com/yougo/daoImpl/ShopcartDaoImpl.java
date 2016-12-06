@@ -14,7 +14,7 @@ import com.yougo.dao.ShopcartDao;
 import com.yougo.db.Conn;
 
 /**
- * ���ﳵ�����ӿڵľ���ʵ��
+ * 
  * 
  * @author Alpha
  * 

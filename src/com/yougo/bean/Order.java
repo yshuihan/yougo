@@ -1,9 +1,7 @@
 package com.yougo.bean;
 
-import java.sql.Timestamp;
-
 /**
- * ����ʵ��
+ * 简单订单实体类（不包含订单内容）
  */
 
 public class Order implements java.io.Serializable {
@@ -18,19 +16,17 @@ public class Order implements java.io.Serializable {
 	private Short userid;
 	private String createtime;
 
-	// Constructors
 
-	/** default constructor */
 	public Order() {
 	}
 
-	/** minimal constructor */
+
 	public Order(String ordernumber, Short userid) {
 		this.ordernumber = ordernumber;
 		this.userid = userid;
 	}
 
-	/** full constructor */
+
 	public Order(String ordernumber, Float price, String context, String state,
 			Short userid, String createtime) {
 		this.ordernumber = ordernumber;
@@ -46,7 +42,6 @@ public class Order implements java.io.Serializable {
 		this.state = state;
 	}
 
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

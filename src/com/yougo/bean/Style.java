@@ -1,32 +1,45 @@
 package com.yougo.bean;
 
 /**
- * ��Ʒ��ʽʵ��
+ * 商品款式实体类
  */
 
 public class Style implements java.io.Serializable {
-
-	// Fields
-
+	/**
+	 * 款式id
+	 */
 	private Short id;
+	/**
+	 * 款式名称
+	 */
 	private String name;
+	/**
+	 * 款式图片路径
+	 */
 	private String image;
+	/**
+	 * 产品 id
+	 */
 	private Short proid;
+	/**
+	 * 现价
+	 */
 	private Float perPrice;
+	/**
+	 * 原价
+	 */
 	private Float oldperprice;
 
-	// Constructors
 
-	/** default constructor */
 	public Style() {
 	}
 
-	/** minimal constructor */
+
 	public Style(Short proid) {
 		this.proid = proid;
 	}
 
-	/** full constructor */
+
 	public Style(String name, String image, Short proid, Float perPrice,
 			Float oldperprice) {
 		this.name = name;
@@ -48,7 +61,6 @@ public class Style implements java.io.Serializable {
 		this.image = image;
 	}
 
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

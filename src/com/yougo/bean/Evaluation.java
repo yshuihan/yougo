@@ -1,14 +1,10 @@
 package com.yougo.bean;
 
-import java.sql.Timestamp;
-
 /**
- * ÆÀ¼Û±íÊµÌå
+ * å•†å“è¯„è®ºå®ä½“ç±»
  */
 
 public class Evaluation implements java.io.Serializable {
-
-	// Fields
 
 	private Short id;
 	private Short proid;
@@ -17,7 +13,6 @@ public class Evaluation implements java.io.Serializable {
 	private Short star;
 	private String createtime;
 
-	// Constructors
 
 	/** default constructor */
 	public Evaluation() {
@@ -38,8 +33,6 @@ public class Evaluation implements java.io.Serializable {
 		this.star = star;
 		this.createtime = createtime;
 	}
-
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

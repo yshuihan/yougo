@@ -14,7 +14,7 @@ import com.yougo.dao.OrderdetailDao;
 import com.yougo.db.Conn;
 
 /**
- * �������������ʵ��
+ * 
  * @author Alpha
  * 
  */

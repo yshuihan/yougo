@@ -1,12 +1,10 @@
 package com.yougo.bean;
 
 /**
- * ÊÕ»ñµØÖ·µÄÊµÌå 
+ * æ”¶è´§åœ°å€å®ä½“ç±»
  */
 
 public class Address implements java.io.Serializable {
-
-	// Fields
 
 	private Short id;
 	private Short userid;
@@ -15,18 +13,15 @@ public class Address implements java.io.Serializable {
 	private String adress;
 	private String code;
 
-	// Constructors
 
-	/** default constructor */
 	public Address() {
 	}
 
-	/** minimal constructor */
+
 	public Address(Short userid) {
 		this.userid = userid;
 	}
 
-	/** full constructor */
 	public Address(Short userid, String name, String phone, String adress,
 			String code) {
 		this.userid = userid;
@@ -45,8 +40,6 @@ public class Address implements java.io.Serializable {
 		this.adress = adress;
 		this.code = code;
 	}
-
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

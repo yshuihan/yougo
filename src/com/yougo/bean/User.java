@@ -1,38 +1,60 @@
 package com.yougo.bean;
 
 /**
- * �û�ʵ��
+ * 用户实体类
  */
 
 public class User implements java.io.Serializable {
-
-	// Fields
-
+	/**
+	 * 用户 id
+	 */
 	private Short id;
+	/**
+	 * 用户名
+	 */
 	private String name;
+	/**
+	 * 邮箱地址
+	 */
 	private String email;
+	/**
+	 * 密码
+	 */
 	private String password;
+	/**
+	 * 用户头像照片路径
+	 */
 	private String headimage;
+	/**
+	 * 手机号
+	 */
 	private String phone;
+	/**
+	 * qq
+	 */
 	private String qq;
+	/**
+	 * 出生日期
+	 */
 	private String birthday;
+	/**
+	 * 收货地址
+	 */
 	private String adress;
+	/**
+	 * 用户等级
+	 */
 	private Short level;
 
-	// Constructors
-
-	/** default constructor */
 	public User() {
 	}
 
-	/** minimal constructor */
 	public User(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
 		this.password = password;
 	}
 
-	/** full constructor */
 	public User(String name, String email, String password, String headimage,
 			String phone, String qq, String birthday, String adress, Short level) {
 		this.name = name;
@@ -66,8 +88,6 @@ public class User implements java.io.Serializable {
 		this.id = id;
 		this.headimage = headimage;
 	}
-
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

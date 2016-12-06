@@ -14,7 +14,7 @@ import com.yougo.dao.ProimagesDao;
 import com.yougo.db.Conn;
 
 /**
- * Ԥ����Ƭ�����ӿڵľ���ʵ��
+ * 
  * 
  * @author Alpha
  * 

@@ -14,7 +14,7 @@ import com.yougo.dao.StyleDao;
 import com.yougo.db.Conn;
 
 /**
- * ��ʽ�����ӿڵľ���ʵ��
+ * 
  * 
  * @author Alpha
  * 

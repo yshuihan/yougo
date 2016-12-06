@@ -5,7 +5,7 @@ import java.util.Collection;
 import com.yougo.bean.Evaluation;
 
 /**
- * 评价操作接口
+ * 璇勮鎺ュ彛
  * @author Alpha
  * 
  */
@@ -15,15 +15,11 @@ public interface EvaluationDao {
 
 	public int evaluationNum(String sql);
 
-	//
 	public int updateEvaluation(Evaluation evaluation);
 
-	//
 	public int deleteEvaluation(Short id);
 
-	//
 	public Collection<Evaluation> getEvaluation(String str);
 
-	//
 	public Evaluation findEvaluation(Short id);
 }

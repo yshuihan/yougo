@@ -1,49 +1,85 @@
 package com.yougo.bean;
 
-import java.sql.Timestamp;
-
 /**
- * ��Ʒʵ��
+ * 商品实体类
  */
 
 public class Product implements java.io.Serializable {
-
-	// Fields
-
+	/**
+	 * 商品 id
+	 */
 	private Short id;
+	/**
+	 * 商品名称
+	 */
 	private String name;
+	/**
+	 * 商品款式
+	 */
 	private Short typeid;
+	/**
+	 * 商品单价
+	 */
 	private Float price;
+	/**
+	 * 原价
+	 */
 	private Float oldprice;
+	/**
+	 * 商品编号（厂家编号）
+	 */
 	private String procode;
+	/**
+	 * 商品参数（html代码块）
+	 */
 	private String parameter;
+	/**
+	 * 上架状态
+	 */
 	private String groundingstate;
+	/**
+	 * 上架时间
+	 */
 	private String grounding;
+	/**
+	 * 下架时间
+	 */
 	private String undercarriage;
+	/**
+	 * 商品图片（小）
+	 */
 	private String indeximage;
+	/**
+	 * 点击次数
+	 */
 	private Long clicknum;
+	/**
+	 * 已售数量
+	 */
 	private Long salenum;
+	/**
+	 * 商品数量
+	 */
 	private Long allocunt;
+	/**
+	 * 商品折扣
+	 */
 	private Float discount;
 
-	// Constructors
-
-	/** default constructor */
 	public Product() {
 	}
 
-	/** minimal constructor */
+
 	public Product(Short id, Short typeid) {
 		this.id = id;
 		this.typeid = typeid;
 	}
 
-	/** full constructor */
+
 	public Product(String name, Short typeid, Float price, Float oldprice,
 			String procode, String parameter, String groundingstate,
 			String grounding, String undercarriage, String indeximage,
 			Long clicknum, Long salenum, Long allocunt, Float discount) {
-		this.id = id;
 		this.name = name;
 		this.typeid = typeid;
 		this.price = price;
@@ -64,7 +100,6 @@ public class Product implements java.io.Serializable {
 			String procode, String parameter, String groundingstate,
 			String grounding, String undercarriage, String indeximage,
 			Long allocunt, Float discount) {
-		this.id = id;
 		this.name = name;
 		this.typeid = typeid;
 		this.price = price;
@@ -102,7 +137,6 @@ public class Product implements java.io.Serializable {
 		this.indeximage = indeximage;
 	}
 
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

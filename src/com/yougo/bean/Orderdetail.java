@@ -1,34 +1,46 @@
 package com.yougo.bean;
 
 /**
- * ��������ʵ��
+ * 订单详情实体类
  */
 
 public class Orderdetail implements java.io.Serializable {
 
-	// Fields
-
+	/**
+	 * 订单详情的 id
+	 */
 	private Short id;
+	/**
+	 * 简单订单 id
+	 */
 	private Short orderid;
+	/**
+	 * 产品 id
+	 */
 	private Short proid;
+	/**
+	 * 购买数量
+	 */
 	private Short num;
+	/**
+	 * 订单总额
+	 */
 	private Float price;
+	/**
+	 * 产品款式编号
+	 */
 	private Short styleid;
 
-	// Constructors
 
-	/** default constructor */
 	public Orderdetail() {
 	}
 
-	/** minimal constructor */
 	public Orderdetail(Short orderid, Short proid, Short styleid) {
 		this.orderid = orderid;
 		this.proid = proid;
 		this.styleid = styleid;
 	}
 
-	/** full constructor */
 	public Orderdetail(Short orderid, Short proid, Short num, Float price,
 			Short styleid) {
 		this.orderid = orderid;
@@ -38,7 +50,6 @@ public class Orderdetail implements java.io.Serializable {
 		this.styleid = styleid;
 	}
 
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

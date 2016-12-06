@@ -1,25 +1,19 @@
 package com.yougo.bean;
 
 /**
- * 管理员实体
+ * 鍚庡彴绠＄悊鍛樺疄浣撶被
  */
 
 public class Manager implements java.io.Serializable {
-
-	// Fields
 
 	private Short id;
 	private String name;
 	private String email;
 	private String password;
 
-	// Constructors
-
-	/** default constructor */
 	public Manager() {
 	}
 
-	/** full constructor */
 	public Manager(String name, String email, String password) {
 		this.name = name;
 		this.email = email;
@@ -31,7 +25,6 @@ public class Manager implements java.io.Serializable {
 		this.password = password;
 	}
 
-	// Property accessors
 
 	public Short getId() {
 		return this.id;

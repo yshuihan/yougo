@@ -14,7 +14,7 @@ import com.yougo.dao.EvaluationDao;
 import com.yougo.db.Conn;
 
 /**
- * ���۲����ľ���ʵ��
+ * 
  * @author Alpha
  * 
  */

@@ -1,30 +1,44 @@
 package com.yougo.bean;
 
-import java.sql.Timestamp;
-
 /**
- * ���ﳵʵ��
+ * 购物车实体类
  */
 
 public class Shopcart implements java.io.Serializable {
-
-	// Fields
-
+	/**
+	 * 购物车编号
+	 */
 	private Short id;
+	/**
+	 * 用户 id
+	 */
 	private Short userid;
+	/**
+	 * 产品 id
+	 */
 	private Short proid;
+	/**
+	 * 产品数量
+	 */
 	private Short num;
+	/**
+	 * 购物车总金额
+	 */
 	private Float price;
+	/**
+	 * 商品款式 id
+	 */
 	private Short styleid;
+	/**
+	 * 创建时间
+	 */
 	private String createtime;
 
-	// Constructors
 
-	/** default constructor */
 	public Shopcart() {
 	}
 
-	/** minimal constructor */
+
 	public Shopcart(Short userid, Short proid, Short styleid) {
 		this.userid = userid;
 		this.proid = proid;
@@ -48,7 +62,6 @@ public class Shopcart implements java.io.Serializable {
 		this.createtime = createtime;
 	}
 
-	// Property accessors
 
 	public Short getId() {
 		return this.id;
