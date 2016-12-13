@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a class="no-underline text-white ml-md mr-md" href="content/about.jsp">联系方式</a>
                     </div>
                     <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10 pt-sm pb-sm">
-                        <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao所有  2016-2018</a>
+                        <a class="no-underline" href="javascript:;">@本网站版权由AlphaGao团队所有  2016-2018</a>
                     </div>
                 </div>
             </div>
